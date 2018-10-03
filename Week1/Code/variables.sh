@@ -1,8 +1,8 @@
 #!/bin/bash
 # Author: Jake Curry j.curry18@imperial.ac.uk
 # Script: variables.sh
-# Desc: 
-# shows the use of variables
+# Desc: shows how variables can be assinged and used in Unix via shell script
+# Date: Oct 2018
 MyVar='some string'
 echo 'the current value of the variable is' $MyVar
 echo 'Please enter a new string'
@@ -14,5 +14,4 @@ read a b
 echo 'you entered' $a 'and' $b '. Their sum is:'
 mysum=`expr $a + $b`
 echo $mysum
-
 

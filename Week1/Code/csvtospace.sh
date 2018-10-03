@@ -9,3 +9,4 @@ echo "Creating a space delimited version of $1..."
 cat $1 | tr -s "," " " >>$1.txt #cat function reads file $1, tr translates the specified characters, -s specifies replacement >>$1.txt sends the output to a .txt file version of file $1 
 echo "Done!" 
 exit
+

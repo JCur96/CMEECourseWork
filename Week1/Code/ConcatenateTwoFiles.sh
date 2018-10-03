@@ -9,4 +9,4 @@ cat $1 > $3 # cat reads the contents of file $1, converts them to a standard out
 cat $2 >> $3 # file $2 is read and output into file $3 
 echo "Merged File is" # returns the contents of the merged file
 cat $3
- 
+

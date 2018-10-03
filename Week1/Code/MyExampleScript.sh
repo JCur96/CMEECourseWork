@@ -5,7 +5,7 @@
 # Arguments: None
 # Date: Oct 2018
 msg1="Hello"
-msg2=$USER # $USER is a placeholde for the computers current user
+msg2=$USER # $USER is a placeholder for the computers current user
 echo "$msg1 $msg2"
 echo "Hello $USER"
 echo

@@ -1,0 +1,37 @@
+#!/bin/bash
+# Author: Jake Curry j.curry18@imperial.ac.uk
+# Desc: Unix Commands, covering finding and counting in numerous files
+# Arguments: vary for each command
+# Date: Oct 2018
+# 
+wc -l ../Data/407228326.fasta &&  wc -l ../Data/407228412.fasta &&  wc -l ../Data/E.coli.fasta  #1
+# - counting file lines 'wc' is the word counting command, '-l' 
+# specifies that we are counting lines. && is just adding commands to the string
+#
+grep -v '>' ../Data/E.coli.fasta #2
+# printing everything after the
+# second line for the E. coli genome. grep is a pattern matching command 
+# that by default prints output, in this case after matching all lines 
+# beginning '>' (-v is the inverse function i.e. grep finds 
+# all lines that do not match the specified pattern) 
+#
+tail -n +2 ../Data/E.coli.fasta | tr -d '[:space:]'  | wc -m  #3 
+# tail displays last lines of a file -n modifies to start at 
+# a particular point, in this case the second line of the file (+2)
+# tr -d is deletion of all '[:spaces:]', 
+# wc, word count, specifying characters are to be counted (-m)
+# 
+tail -n +2 ../Data/E.coli.fasta | tr -d '\n' | grep -o 'ATGC' | wc -l #4
+# tail is used to start from the second line down (so excludes the header
+# from all further commands) 
+# commands are piped (|) together to allow them to happen in sequence on one
+# line
+# tr -d deletes all the ('\n') new line characters
+# grep -o finds all the parts of the now single line that match the sequence
+# and outputs all of these on new single lines 
+# wc -l counts the number of these new lines
+#
+tail -n +2 E.coli.fasta | tr -d '\n' | grep -o 'A' | wc -l 
+tail -n +2 E.coli.fasta | wc -m 'A' 'T' 'G' 'C'
+
+

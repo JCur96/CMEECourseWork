@@ -31,7 +31,13 @@ tail -n +2 ../Data/E.coli.fasta | tr -d '\n' | grep -o 'ATGC' | wc -l #4
 # and outputs all of these on new single lines 
 # wc -l counts the number of these new lines
 #
-tail -n +2 E.coli.fasta | tr -d '\n' | grep -o 'A' | wc -l 
-tail -n +2 E.coli.fasta | wc -m 'A' 'T' 'G' 'C'
+tail -n +2 E.coli.fasta | tr -d '\n' | tot=\$( (wc -m) ) | A=\$( (grep -o 'A') ) &&  T=\$( (grep -o 'T') ) | AT=\$( (A+T) ) | ATprp=\$( (AT/tot) )    
 
+
+
+
+#	wc -m | grep -o 'A' && grep -o 'G' | wc -l >> #5 ??? push each stage to a file, then echo the file?   
+
+## use awk for this ## can save into variables
+# in line then pick them up later in pipe
 

@@ -4,12 +4,12 @@
 # Desc: converts .tif files to .png files
 # Arguments: 1 -> $f is a file name
 # Date: Oct 2018
-for f in *.tiff: # this is a for loop - basic programming method of running 
+for f in *.tif; # this is a for loop - basic programming method of running 
 	# through a set of commands
 	do
 		echo "Converting $f"; # prints whats in quotation marks 
-		#for use to see 
-		convert "$f" "$(basename "$f" .tif).jpg": # converts the file
-		# type whislt retaining the name
+		#for you to see 
+		convert "$f" "$(basename "$f" .tif).jpg"; # converts the file
+		# type whislt retaining the nam
 	done # ends the loop 
 

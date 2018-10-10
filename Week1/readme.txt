@@ -2,7 +2,7 @@
 # Date: 1-7th Oct 2018
 # This directory contains content on the basics of bash commands, scripting 
 # use of LaTeX and git
-# Week 1 is made up of four directories, Code, Data, Output and Sandbox
+# Week 1 is made up of four directories, Code, Data, and Sandbox
 # Code contains scripts and bash code, 
 # Data is raw data that is used by the scripts and 
 # Sandbox contains test files for playing around in the terminal. 
@@ -22,18 +22,17 @@
 # tiff2png.sh - convert .png files to .jpeg files
 # variables.sh
 #
-#
-#
-# Data: This weeks data include the species lists from the IUCN redlist (under spawannxs.txt), temperature data in csv and processed txt formats (1800.csv, 1801.csv, 1802,csv, 1803.csv + the same filenames with a .txt extension), and genomic data in fasta file format (E.coli.fasta, 407228326.fasta, 407228412.fasta). 
-# 
-# 
-# Output: 
-# FirstBiblio.blb -- 
+#FirstBiblio.blb -- 
 # FirstExample.bbl -- 
 # FirstExample.blg ----- Output from running CompileLaTeX.sh on the FirstExample.tex file, with
 # 	an imported bibliography (FirstBiblio.blb).  
 # FirstExample.pdf -- 
 # FirstExample.tex-- 
+#
+# Data: This weeks data include the species lists from the IUCN redlist (under spawannxs.txt), temperature data in csv and processed txt formats (1800.csv, 1801.csv, 1802,csv, 1803.csv + the same filenames with a .txt extension), and genomic data in fasta file format (E.coli.fasta, 407228326.fasta, 407228412.fasta). 
+# 
+# 
+#
 # 
 #
 # Sandbox: 

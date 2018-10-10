@@ -8,5 +8,6 @@ cat $1 > $3 # cat reads the contents of file $1, converts them to a standard out
 # file $3 is a file you name and create as part of the input for the script
 cat $2 >> $3 # file $2 is read and output into file $3 
 echo "Merged File is" # returns the contents of the merged file
-cat $3
-
+cat $3 
+mv $3 ../Results/ # moving the product to the results dir
+exit

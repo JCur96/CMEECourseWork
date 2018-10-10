@@ -6,7 +6,7 @@
 # Arguments: 1-> tab delimited file
 # Date: Oct 2018
 echo "Creating a comma delimited version of $1..."
-cat $1 | tr -s "\t" "," >> $1.csv # tr -s translates characters, specifying replacement of 
+cat $1 | tr -s "\t" "," >> $1.csv | mv $1.csv ../Results/ # tr -s translates characters, specifying replacement, mv, moving the product to the results dir
 echo "Done!"
 exit
 

@@ -9,7 +9,8 @@ for f in *.tif; # this is a for loop - basic programming method of running
 	do
 		echo "Converting $f"; # prints whats in quotation marks 
 		#for you to see 
-		convert "$f" "$(basename "$f" .tif).jpg"; # converts the file
-		# type whislt retaining the nam
-	done # ends the loop 
+		convert "$f" "$(basename "$f" .tif).png"; # converts the file
+		# type whislt retaining the name
+		mv *.png ../Results/ # moving the product to the results dir
+	done # ends the loop
 

@@ -11,9 +11,9 @@ pdflatex $1.tex # compiles the completed document
 pdflatex $1.tex
 echo "Compiled! Opening document for you to view" # just something to
 # say its done it's thing
-evince $1.pdf & # GNOME document viewer - opens the compiled pdf in
+evince ../Results/$1.pdf & # GNOME document viewer - opens the compiled pdf in
 # a document viewer when done
-
+mv $1.pdf ../Results/ # moving the product to the results dir
 ## Cleanup of extraneous files
 # * means all of 
 # .$ specifies the file extensions to be removed

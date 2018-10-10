@@ -16,7 +16,7 @@ def main(argv):
     """Main entry point of the program """
     print('This is a boilerplate') #NOTE: indented using two tabs of 4 spaces
     return 0
-    sys.exit("I am exiting right now")
+    
 if __name__=="__main__": 
     """Makes sure the "main" fuction is called from command line"""
     status = main(sys.argv)

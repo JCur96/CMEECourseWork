@@ -6,7 +6,7 @@
 # Arguments: 1-> space delimited file
 # Date: Oct 2018
 echo "Creating a space delimited version of $1..." 
-cat $1 | tr -s "," " " >>$1.txt #cat function reads file $1,
+cat $1 | tr -s "," " " >>$1.txt | mv $1.txt ../Results/ #cat function reads file $1, mv, moving the product to the results dir
 # tr translates the specified characters,
 # -s specifies replacement >>$1.txt sends the 
 # output to a .txt file version of file $1 

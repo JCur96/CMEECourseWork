@@ -1,5 +1,6 @@
-*~
-*.tmp
+# .gitignore containing python and LaTeX templates, plus my own rules
+
+# Python template for .gitignore
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -112,6 +113,8 @@ venv.bak/
 .mypy_cache/
 .dmypy.json
 dmypy.json
+
+# LaTeX template
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
@@ -368,3 +371,12 @@ TSWLatexianTemp*
 
 # standalone packages
 *.sta
+
+
+
+# Anything extra I've thought of
+
+*~
+*.tmp
+find . -size +100M | cat
+

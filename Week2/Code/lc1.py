@@ -1,7 +1,7 @@
 #!/usr/bin/env python 3
 """ Using list comprehension and traditional loops to make lists from a nested tuple""""
 __appname__ = 'lc1.py'
-__author__ = 'Jake Curry (j.curry18@imperial.ac.uk'
+__author__ = 'Jake Curry (j.curry18@imperial.ac.uk)'
 __version__ = '0.0.1'
 __license__ = "License for this code/program"
 

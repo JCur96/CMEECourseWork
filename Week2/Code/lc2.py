@@ -2,7 +2,7 @@
 """ Using list comprehension to create lists of tuples """
 
 __appname__ = 'lc2.py'
-__author__ = 'Jake Curry (j.curry18@imperial.ac.uk'
+__author__ = 'Jake Curry (j.curry18@imperial.ac.uk)'
 __version__ = '0.0.1'
 __license__ = "License for this code/program"
 

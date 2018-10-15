@@ -29,10 +29,13 @@ taxa = [ ('Myotis lucifugus','Chiroptera'),
 
 # Write your script here:
 
-
-taxa_dict = {key: value for (value, key) in taxa} ## Using list (dictionary) comprehension to make a dictionary, 
+# can be written as a dictionary comprehension - the below is partially complete
+# it requires resolving the no copies of keys issue, which I couldn't find
+# taxa_dict = {key: value for (value, key) in taxa} ## Using list (dictionary) comprehension to make a dictionary, 
 # where species (values) are mapped to orders (keys)
-print(taxa_dict)
+# print(taxa_dict)
+
+## The below works, but it is a loop 
 
 from collections import defaultdict ## importing the subclass defaultdict from the collections module, which
 # provides an alternative to dict, allowing for lists to be turned into dictionaries directly
@@ -41,3 +44,6 @@ for v, k in taxa: # v and k are stand ins for values and keys respectively
     taxa_dic[k].append(v) # adds values to the keys the correspond to, prevents deletion of duplicate key:value pairs, 
     # as it appends the value of a duplicate key to the already existing key
 print(taxa_dic) # prints the dictionary, allowing verification that this has worked
+
+for key in taxa_dic:
+        print(taxa_dic[key])

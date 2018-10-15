@@ -8,14 +8,17 @@ __license__ = "License for this code/program"
 ## imports ## 
 import sys
 
+""" give the input to the power of 0.05"""
 def foo1(x):
-    return x ** 0.5 # give the input to the power of 0.05
+    return x ** 0.5 
 
+""" returns the greater of the inputs"""
 def foo2(x, y):
     if x > y:
         return x
-    return y # returns the greater of the inputs
+    return y 
 
+""" returns the input in order of lowest to highest """
 def foo3(x, y, z):
     if x > y:
         tmp = y
@@ -25,20 +28,23 @@ def foo3(x, y, z):
         tmp = z
         z = y
         y = tmp
-    return [x, y, z]   # returns the input in order of lowest to highest
+    return [x, y, z]   
 
-def foo4(x): # calculates factorial iteratively
+""" calculates factorial iteratively """
+def foo4(x): 
     result = 1
     for i in range(1, x + 1):
         result = result * i
     return result # runs through the range multipying result by each number in the range
 
-def foo5(x): # a recursive function - calls itself until it hits 1
+"""a recursive function - calls itself until it hits 1"""
+def foo5(x): 
     if x == 1:
         return 1
     return x * foo5(x - 1) # input times by this function but for input minus one until it hits one
 
-def foo6(x): # Calculate the factorial of x in a different way
+"""Calculate the factorial of x in a different way"""
+def foo6(x): 
     facto = 1
     while x >= 1:
         facto = facto * x

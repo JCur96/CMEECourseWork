@@ -20,5 +20,5 @@ birds = ( ('Passerculus sandwichensis','Savannah sparrow',18.7),
 # prettier
 
 for i in birds:
-    print("{} {} {}".format (i[0], i[1], i[2]), "-".) 
+    print("{} {} {}".format (i[0], i[1], i[2])) 
 

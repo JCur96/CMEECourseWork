@@ -61,7 +61,7 @@ def main(argv):
     g = open('../Data/JustOaksData.csv','w')
     taxa = csv.reader(f)
     csvwrite = csv.writer(g)
-    skip_header = next(taxa, None) # skips to the second row
+    skip_header = next(taxa) # skips to the second row
     oaks = set()
     if skip_header: # writes in a header if you skipped it previously
             csvwrite.writerow(skip_header) 

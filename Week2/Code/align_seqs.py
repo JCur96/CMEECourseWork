@@ -8,16 +8,25 @@ __license__ = "License for this code/program"
 
 
 # Two example sequences to match
-seq2 = "ATCGCCGGATTACGGG"
-seq1 = "CAATTCGGAT"
+# seq2 = "ATCGCCGGATTACGGG"
+# seq1 = "CAATTCGGAT"
 
 # Assign the longer sequence s1, and the shorter to s2
 # l1 is length of the longest, l2 that of the shortest
 import sys
 import csv
 
-## 
-""" Makes sure the sequence lengths are correct way round"""
+##     
+
+""" Makes sure the sequence lengths are correct way round
+by first opening the file and assigning each sequence to either seq1 or seq2"""
+
+D = open("../Data/seqs.csv")
+lines = D.readlines()
+D.close 
+seq1 = lines[0]
+seq2 = lines[1]
+
 l1 = len(seq1)
 l2 = len(seq2)
 if l1 >= l2:

@@ -11,6 +11,8 @@
 # OUTPUT
 # The heights of the tree, same unit as "distance"
 
+trees <- read.csv("../Data/trees.csv", header = T)
+
 TreeHeight <- function(degrees, distance) {
   radians <- degrees * pi / 180
   height <- distance * tan(radians)
@@ -19,4 +21,13 @@ TreeHeight <- function(degrees, distance) {
   return (height)
 }
 
-TreeHeight(37,40)
+TreeHts <- TreeHeight(trees$Angle.degrees, trees$Distance.m)
+
+## cbind to make the output into an object, and then to bind (append) one object 
+# to the next!
+TrHts <- cbind(Height = c(TreeHts))
+TreesF <- cbind(trees, TrHts)
+
+# function for writing to a comma delimited file
+write.csv(TreesF, "../Results/TreeHts.csv")
+

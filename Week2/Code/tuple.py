@@ -14,11 +14,10 @@ birds = ( ('Passerculus sandwichensis','Savannah sparrow',18.7),
         )
 
 
-# i is a placeholder for all elements in birds, for makes a loop that goes through 
-# all elements, print displays all elements found in birds, each tuple is displayed on 
-# a new line. .format allows for the removal of the brackets, making it a little 
-# prettier
 
-for i in birds:
-    print("{} {} {}".format (i[0], i[1], i[2])) 
+for i in birds: # i is a placeholder for all elements in birds, for makes a loop that goes through 
+    # all elements 
+    print("{} {} {}".format (i[0], i[1], i[2])) # print displays all elements found in birds, each tuple is displayed on 
+    # a new line. .format allows for the removal of the brackets, making it a little 
+    # prettier
 

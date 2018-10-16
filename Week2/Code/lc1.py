@@ -15,14 +15,11 @@ birds = ( ('Passerculus sandwichensis','Savannah sparrow',18.7),
 
         
 #(1) Using list comprehension to create three seperate lists, of Latin name, common name and body mass respectively
-
-# The function list tells python that we are creating a list from the enclosed command
+latin_name_lc = list ([i[0] for i in birds])   # The function list tells python that we are creating a list from the enclosed command
 # which say for every element of this nested tuple, use the first (zero) tuple to create
-# the new list. Print jsut shows whats in the list. Each new block is for a different list 
+# the new list.
+print (latin_name_lc) # Print jsut shows whats in the list. Each new block is for a different list 
 # with [] being used to select which element of the nested tuple to use to create the list
-
-latin_name_lc = list ([i[0] for i in birds])   
-print (latin_name_lc)
 
 common_name_lc = list ([i[1] for i in birds])
 print (common_name_lc)
@@ -31,16 +28,12 @@ weight_lc = list ([i[2] for i in birds])
 print (weight_lc)
 
 # (2) Using loops to create three seperate lists
-
-# list is a function used to create lists. The loop goes through the tuple, birds, finding the 
-# specified element (first[0], second[1] or third[2] 
-# depending on which new list is being created) and .appends (adds) it to the new list. 
-# Once this is done print displays the content of each list.
-
-latin_name_loop = list()
+latin_name_loop = list() # list is a function used to create lists. 
 for i in birds:
-    latin_name_loop.append(i[0])
-print(latin_name_loop)
+    latin_name_loop.append(i[0]) # The loop goes through the tuple, birds, finding the 
+# specified element (first[0], second[1] or third[2] 
+# # depending on which new list is being created) and .appends (adds) it to the new list. 
+print(latin_name_loop) # Once this is done print displays the content of each list.
 
 
 common_name_loop = set()

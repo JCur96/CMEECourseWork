@@ -1,9 +1,12 @@
-# Author: Jake Curry j.curry18@imperial.ac.uk
-# Script: basic_csv.py
-# Desc: python script for opening and reading a csv file containing species and body mass data, 
-# and subsequently creating a file containing only species name and body mass
-# Arguments: 2 -> f and g, files that contain the data
-# Date: Oct 2018
+#!/usr/bin/env python3
+""" Python script for opening and reading a csv file containing species and body mass data, 
+ and subsequently creating a file containing only species name and body mass"""
+__appname__ = 'basic_csv.py'
+__author__ = 'Jake Curry (j.curry18@imperial.ac.uk)'
+__version__ = '0.0.1'
+__license__ = "License for this code/program"
+
+# imports 
 import csv # importing a module for use in this script - much like packages in R
 # Read a file containing: 
 # 'Species', 'Infraorder', 'Family', 'Distribution', 'Body mass (Kg)' 

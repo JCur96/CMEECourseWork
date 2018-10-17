@@ -1,6 +1,11 @@
-
 #!/usr/bin/env python3
-# Script: scope.py
+""" Demonstrates local and global variables """
+
+__appname__ = 'scope.py'
+__author__ = 'Jake Curry (j.curry18@imperial.ac.uk)'
+__version__ = '0.0.1'
+__license__ = "License for this code/program"
+
 
 ## Try this first
 _a_global = 10

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Examples of list comprehension in python"""
+"""Examples of list comprehension in python vs loops"""
 __appname__ = 'oaks.py'
 __author__ = 'Jake Curry (j.curry18@imperial.ac.uk'
 __version__ = '0.0.1'

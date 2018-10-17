@@ -2,7 +2,7 @@
 """A basic boilerplate program for python! Prints the statement 'This is a boilerplate'
     after importing the sys module, and closes the program once its done"""
 __appname__ = 'boilerplate.py'
-__author__ = 'Jake Curry (j.curry18@imperial.ac.uk'
+__author__ = 'Jake Curry (j.curry18@imperial.ac.uk)'
 __version__ = '0.0.1'
 __license__ = "License for this code/program"
 

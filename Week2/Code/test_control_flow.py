@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
-"""Some functions exemplifying the use of control statements"""
+"""Testing using doctests"""
 
+__appname__ = 'test_control_flow.py'
 __author__ = 'Jake Curry (j.curry18@imperial.ac.uk)'
 __version__ = '0.0.1'
 

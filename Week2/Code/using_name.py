@@ -1,7 +1,7 @@
 #!/usr/bin/env python3 
-""" Can be run as a self standing program or imported from another module """
+""" Using modules. Can be run as a self standing program or imported from another module - it tells you which it's doing! """
 __appname__ = 'using_name.py'
-__author__ = 'Jake Curry (j.curry18@imperial.ac.uk'
+__author__ = 'Jake Curry (j.curry18@imperial.ac.uk)'
 __version__ = '0.0.1'
 __license__ = 'license for this software would go here'
 

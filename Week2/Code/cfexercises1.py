@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Some functions exemplifying control statements"""
 __appname__ = 'cfexercises1.py'
-__author__ = 'Jake Curry (j.curry18@imperial.ac.uk'
+__author__ = 'Jake Curry (j.curry18@imperial.ac.uk)'
 __version__ = '0.0.1'
 __license__ = "License for this code/program"
 

@@ -86,8 +86,8 @@ def main(argv):
     alignment and score. Then outputs best alignment, the longest sequence and the best score to a txt file"""
     with open("../Data/seqs.csv", "r") as infile:  
         inreader = csv.reader(infile) # make a reader instance for infile, reads lines in 
-        source_data = [x[0] for x in inreader]
-    source_data = source_data[0:2]
+        source_data = [x[0] for x in inreader] # makes a list out of the contents of the .reader object
+    source_data = source_data[0:2] # Makes sure only the first two lines in the file are used
     print(source_data)
     out_str = "{}\n{}\nBest Score: {}\n".format(my_best_align, s1, my_best_score) # turning the outputs into a string
     with open("../Results/BestMatch.txt", "w") as outfile:

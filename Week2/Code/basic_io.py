@@ -1,9 +1,11 @@
-# Author: Jake Curry j.curry18@imperial.ac.uk
-# Script: basic_io.py 
-# Desc: First python script I've written, reads a basic text file, and demonstrates various loop 
-# functions that can be written in python
-# to edit the text file. 
-# Date: Oct 2018 
+#!/usr/bin/env python3
+"""First python script I've written, reads a basic text file, and demonstrates various 
+loop functions that can be written in python to edit the text file. """
+__appname__ = 'basic_io.py'
+__author__ = 'Jake Curry (j.curry18@imperial.ac.uk)'
+__version__ = '0.0.1'
+__license__ = "License for this code/program"
+
 ##############
 # FILE INPUT
 #############

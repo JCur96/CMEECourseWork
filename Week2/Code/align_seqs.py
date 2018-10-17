@@ -26,6 +26,8 @@ lines = D.readlines()
 D.close 
 seq1 = lines[0]
 seq2 = lines[1]
+seq1 = seq1.rstrip("\n")
+seq2 = seq2.rstrip("\n")
 
 l1 = len(seq1)
 l2 = len(seq2)
@@ -36,7 +38,6 @@ else:
     s1 = seq2
     s2 = seq1
     l1, l2 = l2, l1 # swap the two lengths
-
 
 # A function that computes a score by returning the number of matches starting
 # from arbitrary startpoint (chosen by user)
@@ -89,6 +90,7 @@ def main(argv):
         source_data = [x[0] for x in inreader] # makes a list out of the contents of the .reader object
     source_data = source_data[0:2] # Makes sure only the first two lines in the file are used
     print(source_data)
+    print(s1)
     out_str = "{}\n{}\nBest Score: {}\n".format(my_best_align, s1, my_best_score) # turning the outputs into a string
     with open("../Results/BestMatch.txt", "w") as outfile:
         outfile.write(out_str)

@@ -11,7 +11,21 @@
 # OUTPUT
 # The heights of the tree, same unit as "distance"
 
-trees <- read.csv("../Data/trees.csv", header = T)
+
+# using command args to enable this script to take external input
+args = commandArgs()
+# test if there is at least one argument: if not, return an error
+if (length(args)==0) {
+  stop("At least one argument must be supplied (input file).n", call.=FALSE)
+} else if (length(args)==1) {
+  # default output file
+  args[2] = "out.txt"
+}
+
+# trees <- read.csv("../Data/trees.csv", header = T)
+# generalised reading in and out
+trees <- read.csv(args[1], header = TRUE)
+ <- write.csv(TreesF, "../Results/TreeHts.csv")
 
 TreeHeight <- function(degrees, distance) {
   radians <- degrees * pi / 180

@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-""" Aligns two DNA sequences from a single input file and sends the best match to a single output file """
+""" Aligns two DNA sequences from a single input file and sends the best match to a single output file 
+Modularising functions requires that input arguments are given as well as output arguments e.g. def function (arg, arg2 ect..)
+return outarg1, outarg2 etc"""
 
 __appname__ = 'align_seqs.py'
 __author__ = 'Jake Curry (j.curry18@imperial.ac.uk)'

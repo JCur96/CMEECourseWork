@@ -1,4 +1,5 @@
-# TreeHeight.R
+#!/usr/bin/env Rscript 
+#TreeHeight.R
 # This function calculates the height of trees given the distance of each tree
 # from its base and angle to its top, using the trigonometric formula
 # 
@@ -12,20 +13,7 @@
 # The heights of the tree, same unit as "distance"
 
 
-# using command args to enable this script to take external input
-args = commandArgs()
-# test if there is at least one argument: if not, return an error
-if (length(args)==0) {
-  stop("At least one argument must be supplied (input file).n", call.=FALSE)
-} else if (length(args)==1) {
-  # default output file
-  args[2] = "out.txt"
-}
-
-# trees <- read.csv("../Data/trees.csv", header = T)
-# generalised reading in and out
-trees <- read.csv(args[1], header = TRUE)
- <- write.csv(TreesF, "../Results/TreeHts.csv")
+trees <- read.csv("../Data/trees.csv", header = T)
 
 TreeHeight <- function(degrees, distance) {
   radians <- degrees * pi / 180

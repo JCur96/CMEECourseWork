@@ -16,5 +16,5 @@ points(long, lat, col="gold", pch=16) # adds points to the map from the vectors 
 
 # Looking at the map, what biases might you expect in any analysis based on the data represented?
 # There's a latitudinal bias, with the northern hemisphere being over represented, there is a longitudinal bais, with the western 
-# hemisphere being over represented
-# This is possibly due to higher sampling effort in those areas
+# hemisphere being over represented. This may lead to analysis concluding that these hemispheres have a good LPI, 
+# wheres the others have a poor LPI, however this may simply represent a sampling effort discrepencey.

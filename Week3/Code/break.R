@@ -1,3 +1,4 @@
+#!/usr/bin/env Rscript 
 # break.R 
 # Showing how to break out of loops 
 

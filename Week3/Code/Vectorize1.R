@@ -1,3 +1,6 @@
+#!/usr/bin/env Rscript 
+# Vectorize1.R
+# using vecotorisation to save system time
 M <- matrix(runif(1000000),1000,1000)
 
 SumAllElements <- function(M){

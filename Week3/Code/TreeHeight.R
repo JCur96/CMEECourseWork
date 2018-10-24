@@ -1,5 +1,5 @@
 #!/usr/bin/env Rscript 
-#TreeHeight.R
+# TreeHeight.R
 # This function calculates the height of trees given the distance of each tree
 # from its base and angle to its top, using the trigonometric formula
 # 

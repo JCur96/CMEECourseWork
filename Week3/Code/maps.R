@@ -1,3 +1,5 @@
+#!/usr/bin/env Rscript 
+# maps.R
 # Mapping practical
 # 
 

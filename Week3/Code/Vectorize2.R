@@ -1,4 +1,7 @@
+#!/usr/bin/env Rscript 
+# Vectorize2.R 
 # Runs the stochastic (with gaussian fluctuations) Ricker Eqn .
+# Then shows how it can be vectorized to speed up the time it takes
 
 rm(list=ls())
 

@@ -1,3 +1,4 @@
+#!/usr/bin/env Rscript 
 # control.R
 # Some code exemplifying control flow constructs in R
 

@@ -1,4 +1,6 @@
-## run a simulation that involves sampling from a population
+#!/usr/bin/env Rscript 
+# sample.R
+# run a simulation that involves sampling from a population
 
 x <- rnorm(50) #Generate your population
 doit <- function(x){

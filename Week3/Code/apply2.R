@@ -1,3 +1,7 @@
+#!/usr/bin/env Rscript 
+# apply2.R
+# makes a function that can then be applied over matrices 
+# using the apply family
 SomeOperation <- function(v){ # (What does this function do?)
   if (sum(v) > 0){
     return (v * 100)

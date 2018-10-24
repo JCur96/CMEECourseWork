@@ -1,7 +1,9 @@
+#!/usr/bin/env Rscript 
+# Ricker.R
+# Runs a simulation of the Ricker model
+# Returns a vector of length generations
 Ricker <- function(N0=1, r=1, K=10, generations=50)
 {
-  # Runs a simulation of the Ricker model
-  # Returns a vector of length generations
   
   N <- rep(NA, generations)    # Creates a vector of NA
   

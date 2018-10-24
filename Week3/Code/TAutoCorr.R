@@ -1,4 +1,8 @@
+#!/usr/bin/env Rscript 
+# This script calculates the autocorrelation between years and shows
+# that this correlation is significantly different from random
 # TAutoCorr.R
+
 
 load("../Data/KeyWestAnnualMeanTemperature.RData", envir = parent.frame(),  verbose = T)
 ats
@@ -44,9 +48,9 @@ for(i in 1:reps){
 
 #Plotting the histogram of frequency of correlation values for the random samples occurs
 hist(coeff.vec)
-# plot(density(coeff.vec)) # density plot, it looks kinda nicer 
+par(plot(density(coeff.vec), main ="",xlab= "Correlation coefficient"), cex.lab = 1.4, cex.axis = 1.4) # density plot, it looks kinda nicer 
 
-abline(v = corr.est,col = "red")# sticking a line where your unjumbled corr value appears
+abline(v = corr.est,col = "blue")# sticking a line where your unjumbled corr value appears
 
 # Essentially asks which percentile the corr value found falls in, which translates to a p value
 length(coeff.vec[coeff.vec>corr.est])/length(coeff.vec)

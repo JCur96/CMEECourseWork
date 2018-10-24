@@ -1,4 +1,6 @@
+#!/usr/bin/env Rscript 
 # preallocate.R
+# exmplifying preallocating memory to save system time
 
 
 a <- NA

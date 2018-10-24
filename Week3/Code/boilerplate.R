@@ -1,3 +1,5 @@
+#!/usr/bin/env Rscript 
+# boilerplate.R
 # A boilerplate R script
 
 MyFunction <- function(Arg1, Arg2){

@@ -1,3 +1,4 @@
+#!/usr/bin/env Rscript 
 # next.R
 # Showing use of the next statement in within a loop 
 # next allows skipping to the next iteration 

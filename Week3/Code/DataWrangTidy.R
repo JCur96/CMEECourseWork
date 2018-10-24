@@ -1,6 +1,6 @@
-################################################################
-################## Wrangling the Pound Hill Dataset ############
-################################################################
+#!/usr/bin/env Rscript 
+# DataWrang.R
+# Wrangling the Pound Hill Dataset using the tidyverse
 
 ############# Required packages ##############
 require(dplyr)

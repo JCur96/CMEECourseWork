@@ -1,6 +1,8 @@
+#!/usr/bin/env Rscript 
+# browse.R
+# Runs a simulation of exponential growth
+# Returns a vector of length generations
 Exponential <- function(N0 = 1, r = 1, generations = 10){
-  # Runs a simulation of exponential growth
-  # Returns a vector of length generations
   
   N <- rep(NA, generations)    # Creates a vector of NA
   

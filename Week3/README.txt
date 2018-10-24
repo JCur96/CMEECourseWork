@@ -30,6 +30,7 @@ GPDDFiltered.RData: data for maps.R
 KeyWestAnnualMeanTemperature.RData: data for TAutoCorr.R
 PoundHillData.csv: data for DataWrang.R
 PoundHillMetaData.csv: metadata for DataWrang.R
+TempAutoCor.tex: the source code for making a latex pdf
 trees.csv: data in for basic_io.R
 
 Results:

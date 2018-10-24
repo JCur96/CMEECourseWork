@@ -2,7 +2,6 @@
 # 
 
 # Imports 
-install.packages("maps") # installs necessary packages 
 require(maps) # loads them if not already present
 #
 load("../Data/GPDDFiltered.RData") # loads the R data file

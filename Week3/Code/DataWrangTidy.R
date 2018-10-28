@@ -1,6 +1,6 @@
-#!/usr/bin/env Rscript 
-# DataWrang.R
-# Wrangling the Pound Hill Dataset using the tidyverse
+################################################################
+################## Wrangling the Pound Hill Dataset ############
+################################################################
 
 ############# Required packages ##############
 require(dplyr)

@@ -11,9 +11,14 @@ control.R: Some code exemplifying control flow constructs in R
 DataWrang.R: Wrangling the Pound Hill Dataset using the tidyverse
 DataWrandTidy.R: Wrangling the Pound Hill Dataset 
 get_TreeHeight.R: This function calculates the height of trees given the distance of each tree from its base and angle to its top, using the trigonometric formula
+Girko.R: Girko exercise script
 maps.R: Mapping practical
+MyBars.R: bar graph exercise script
 next.R: Showing use of the next statement in within a loop next allows skipping to the next iteration 
+nlls_modelling.R: non-linear least squares modelling, not complete
+PlotLin.R: plotting and annotating a linear regression 
 PP_Lattice.R: exemplifies the use of the lattice function
+PP_Regress.R: ggplot practical
 preallocate.R: exmplifying preallocating memory to save system time
 Ricker.R: Runs a simulation of the Ricker model returns a vector of length generations
 run_get_TreeHeight.sh: A simple shell script that calls the get_TreeHeights R script, using the trees.csv file as input data
@@ -34,10 +39,7 @@ TempAutoCor.tex: the source code for making a latex pdf
 trees.csv: data in for basic_io.R
 
 Results:
-MyData.csv: data out from  basic_io.R
-TempAutoCor.pdf: the pdf from temperature autocorrelation practical
-TreeHts.csv: data from running TreeHeights.R
-trees_TreeHeight.csv: output from get_tree_heights.sh
+Placeholder: there to make sure there is a results folder on git!
 
 Sandbox:
 Assorted R.R: assorted useful R code that I was playing with

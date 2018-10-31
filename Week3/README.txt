@@ -29,6 +29,12 @@ try.R: run a simulation that involves sampling from a population with try functi
 Vectorize1.R: using vecotorisation to save system time
 Vectorize2.R: Runs the stochastic (with gaussian fluctuations) Ricker Eqn, then shows how it can be vectorized to speed up the time it takes
 
+Results:
+PP_Regress_Results.pdf: Graphical output of the PP_Regress practical
+PP_Regress_Results.csv: Tabular data output from PP_Regress practical
+Placeholder: just a placeholder to keep results in the git!
+TempAutoCor.pdf: Output and analysis of TempAutoCor practical
+
 Data:
 EcolArchives-E089-51-D1.csv: data for visualization practicals
 GPDDFiltered.RData: data for maps.R

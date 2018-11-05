@@ -4,7 +4,7 @@
 # Oct 2018
 
 
-setwd("~/Documents/CMEECourseWork/Week3/Code") # wd for my convienience, will comment out before push
+# setwd("~/Documents/CMEECourseWork/Week3/Code") # wd for my convienience, will comment out before push
 
 #### packages
 require(ggplot2)

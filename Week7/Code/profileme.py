@@ -1,5 +1,5 @@
 # !/usr/bin/env ipython3
-""" Coding of the Lotka-Volterra model in python """
+""" Exemplifying profiling in python """
 
 __appname__ = 'profileme.py'
 __author__ = 'Jake Curry (j.curry18@imperial.ac.uk)'
@@ -9,18 +9,21 @@ __license__ = "License for this code/program"
 
 
 def my_squares(iters):
+    """Squaring iters and appending to out"""
     out = []
     for i in range(iters):
         out.append(i ** 2)
     return out
 
 def my_join(iters, string):
+    """Making a string of length iters"""
     out = ''
     for i in range(iters):
-        out += string.join(", ")
+        out += string.join(", ") # += would be the same as out = out + some_object
     return out
 
 def run_my_funcs(x,y):
+    """Runs the functions allowing inputs"""
     print(x,y)
     my_squares(x)
     my_join(x,y)

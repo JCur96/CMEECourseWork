@@ -13,7 +13,7 @@ import scipy.integrate as integrate
 
 #Functions
 def dCR_dt(pops, t=0): # defining the function that makes the model
-
+    """ doing d of consumer and resource over dt """
     R = pops[0]
     C = pops[1]
     dRdt = r * R - a * R * C 
@@ -39,6 +39,7 @@ RC0 = sc.array([R0, C0]) # a numpy array containing the populations of both C an
 pops, infodict = integrate.odeint(dCR_dt, RC0, t, full_output=True) # the integration part actually happens here. Think of it like DeSolve in R
 
 
+# Plotting it all out
 f1 = p.figure() # creating a blank figure named f1
 
 p.plot(t, pops[:,0], 'g-', label='Resource density') # Plot
@@ -63,15 +64,3 @@ p.title('Consumer-Resource population dynamics')
 # p.show()# To display the figure
 
 f2.savefig('../Results/LV_model_CR.pdf') #Save figure
-
-
-# def main(argv): 
-#     """Main entry point of the program """
-#     print('This is a boilerplate') 
-    
-#     return 0
-    
-# if __name__=="__main__": 
-#     """Makes sure the "main" fuction is called from command line"""
-#     status = main(sys.argv)
-#     sys.exit(status)

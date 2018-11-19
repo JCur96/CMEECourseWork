@@ -10,7 +10,6 @@ __license__ = "License for this code/program"
 import scipy as sc
 import matplotlib.pylab as p
 import scipy.integrate as integrate
-import cmd
 import sys
 
 # Functions 

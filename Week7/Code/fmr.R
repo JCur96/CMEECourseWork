@@ -1,12 +1,16 @@
+#!Rscript 
 # Plots log(field metabolic rate) against log(body mass) for the Nagy et al 
 # 1999 dataset to a file fmr.pdf.
 # Writes the list of species names to species.csv
+# fmr.R
 
-cat("Reading CSV\n")
-
+cat("Reading CSV\n") # prints quoted text to terminal
+# Reading data in
 nagy <- read.csv('../Data/NagyEtAl1999.csv', stringsAsFactors = FALSE)
 
-cat("Creating graph\n")
+cat("Creating graph\n") # prints quoted text to cmd line
+
+# Creating a PDF of the plotted linear model
 pdf('../Results/fmr_plot.pdf', 11, 8.5)
 col <- c(Aves='purple3', Mammalia='red3', Reptilia='green3')
 plot(log10(nagy$M.g), log10(nagy$FMR.kJ.day.1), pch=19, col=col[nagy$Class], 

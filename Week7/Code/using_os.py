@@ -6,14 +6,12 @@ __author__ = 'Jake Curry (j.curry18@imperial.ac.uk)'
 __version__ = '0.0.1'
 __license__ = "License for this code/program"
 
-
-
-
-#################### Try all this shit again from scratch cause it doesn't work
-
 #Imports
 import subprocess
 import re
+
+# Get the user's home directory.
+home = subprocess.os.path.expanduser("~")
 
 # Use the subprocess.os module to get a list of files and  directories 
 # in your ubuntu home directory 
@@ -29,7 +27,7 @@ def All_Dir_Files():
         ALL += [i for i in files if re.match(r'\w*', i)!=None]
     return ALL
 All_Dir_Files()
-len(All_Dir_Files())
+len(All_Dir_Files)
 
 
 #################################
@@ -37,9 +35,6 @@ len(All_Dir_Files())
 #~directories in your home/ that start with an uppercase 'C'
 
 # Type your code here: 
-
-# Get the user's home directory.
-home = subprocess.os.path.expanduser("~")
 
 # Use a for loop to walk through the home directory.
 def F_D_C():

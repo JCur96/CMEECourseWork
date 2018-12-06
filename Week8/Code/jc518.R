@@ -120,7 +120,7 @@ cluster_run <- function(speciation_rate, size, wall_time, interval_rich,
   # x <- Sys.time()
   # if(x + wall_time == F) {
   # print('is this on?')
-  while((proc.time()[3] - x) !=  wall_time) {
+  while((proc.time()[3] - x) <  wall_time) {
     #print(proc.time()[3] - x)
       COM <- neutral_generation_speciation(community = COM, v = speciation_rate)
       generation <- generation + 1 

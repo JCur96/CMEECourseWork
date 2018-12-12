@@ -253,7 +253,7 @@ spiral <- function(start_pos, direction, len) {
 }
 spiral(start_pos = c(4,6), direction = pi, len = 3)
 
-########################
+######################## spiral_2 ######
 plot(1, type="n", xlab="", ylab="", xlim=c(0, 10), ylim=c(0, 10))
 spiral_2 <- function(start_pos, direction, len, e = 0.001) {
   if(len > e){
@@ -263,7 +263,7 @@ spiral_2 <- function(start_pos, direction, len, e = 0.001) {
 }
 spiral_2(start_pos = c(4,6), direction = pi, len = 3, e = 0.001)
 
-#########################
+######################### tree #######  
 plot(1, type="n", xlab="", ylab="", xlim=c(0, 10), ylim=c(0, 10))
 tree <- function(start_pos, direction, len, e = 0.001) {
   if(len > e){
@@ -273,3 +273,35 @@ tree <- function(start_pos, direction, len, e = 0.001) {
   }
 }
 tree(start_pos = c(6,0), direction = pi/2, len = 3, e = 0.001)
+
+
+#################### Fern ################
+plot(1, type="n", xlab="", ylab="", xlim=c(0, 50), ylim=c(0, 50))
+fern <- function(start_pos, direction, len, e = 0.001) {
+  if(len > e){
+    EV <- turtle(start_pos = start_pos, direction = direction, len = len)
+    fern(start_pos = EV, direction = (direction + (pi/4)), len = (len*0.38), e = e)
+    fern(start_pos = EV, direction = (direction), len = (len*0.87), e = e)
+  }
+}
+fern(start_pos = c(6,0), direction = pi/2, len = 3, e = 0.001)
+
+################### Fern_2 ####################
+plot(1, type="n", xlab="", ylab="", xlim=c(0, 14), ylim=c(0, 25))
+fern_2 <- function(start_pos, direction, len, e = 0.001, dir = 1) {
+  left_dir = 1
+  if(dir == 1){
+    left_dir = direction + (pi/4) 
+  } else if(dir == -1){
+    left_dir = direction - (pi/4)
+  }
+  dir = dir * -1
+  if(len > e){
+    EV <- turtle(start_pos = start_pos, direction = direction, len = len)
+    fern_2(start_pos = EV, direction = left_dir, len = (len*0.38), e = e, dir = -dir)
+    fern_2(start_pos = EV, direction = (direction), len = (len*0.87), e = e, dir = dir)
+  }
+}
+fern_2(start_pos = c(7,0), direction = pi/2, len = 3, e = 0.01, dir = 1)
+                                                                                                                            
+                                                                                                                                                                                                                          

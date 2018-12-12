@@ -7,7 +7,7 @@
 rm(list=ls())
 graphics.off()
 
-##############################################
+##############################species_richness################
 
 # Function for species richness 
 species_richness <- function(x) {
@@ -17,7 +17,7 @@ species_richness <- function(x) {
 }
 # species_richness()
 
-###########################
+###########################initialise_min#####################
 
 # generating alternate monodominace intial condition
 initialise_min <- function(x) {
@@ -26,7 +26,7 @@ initialise_min <- function(x) {
 }
 # initialise_min()
 
-##############################
+#########choose_two############################################
 
 # picking two random numbers within a uniform distribution
 choose_two <- function(x) {
@@ -35,7 +35,7 @@ choose_two <- function(x) {
 }
 # choose_two()
 
-################################
+################neutral_speciation#############################
 
 # neutral speciation
 neutral_step_speciation <- function(community, v) {
@@ -50,7 +50,7 @@ neutral_step_speciation <- function(community, v) {
 }
 # neutral_step_speciation(c(10,5,13), v = 1)
 
-######################################
+################neutral_generation_speciation######################
 
 # neutral generation speciation
 neutral_generation_speciation <- function(community, v) {
@@ -66,7 +66,7 @@ neutral_generation_speciation <- function(community, v) {
 
 # neutral_generation_speciation(c(10,13,3), v = 1)
 
-#############################################
+#################Species_abundance############################
 
 # Species abundance
 species_abundance <- function(x) { 
@@ -76,7 +76,7 @@ species_abundance <- function(x) {
 }
 species_abundance(c(1,5,3,6,5,6,1,1))
 
-################################################
+##############octaves##################################
 
 # octaves
 octaves <- function(x) {
@@ -87,7 +87,7 @@ octaves <- function(x) {
 }
 # octaves(c(100,64,63,5,4,3,2,2,1,1,1,1))
 
-####################################################
+###############sum_vect#####################################
 
 # summing two vectors, the shorter of which has been filled with 0 to equal length
 sum_vect <- function(x, y){
@@ -109,37 +109,37 @@ sum_vect <- function(x, y){
 
 cluster_run <- function(speciation_rate, size, wall_time, interval_rich,
                         interval_oct, burn_in_generations, output_file_name) {
-  COM = rep(1, size)
-  SAO <- list()
-  i <- 0
-  generation <- 0
-  SR2 <- 0 
-  SR <- vector()
-  wall_time <- wall_time*60
-  x <- proc.time()[3]
+  COM = rep(1, size) # community size
+  SAO <- list() # species abundance octaves
+  i <- 0 # 
+  generation <- 0 # which generation it is on
+  SR2 <- 0 # species richness vector needed later 
+  SR <- vector() # species richness vector needed later
+  wall_time <- wall_time*60 # making a clock in seconds
+  x <- proc.time()[3] # pulling out system time
   # x <- Sys.time()
   # if(x + wall_time == F) {
   # print('is this on?')
-  while((proc.time()[3] - x) <  wall_time) {
+  while((proc.time()[3] - x) <  wall_time) { # making a timer
     #print(proc.time()[3] - x)
-      COM <- neutral_generation_speciation(community = COM, v = speciation_rate)
+      COM <- neutral_generation_speciation(community = COM, v = speciation_rate) # updating the communtiy at each iteration
       generation <- generation + 1 
-      if(generation < burn_in_generations){
-        if(generation %% interval_rich == 0) {
-          SR2 <- species_richness(COM)
-          SR <- append(SR, SR2)
+      if(generation < burn_in_generations){ # whilst burn in is happening
+        if(generation %% interval_rich == 0) { # at these intervals
+          SR2 <- species_richness(COM) # get species richness
+          SR <- append(SR, SR2) # append to the list of species richnesses
         }
       } else {
-        if(generation %% interval_oct == 0) {
-          i <- i + 1
-          SAO[[i]]  <- octaves(species_abundance(COM))
+        if(generation %% interval_oct == 0) { # at these intervals
+          i <- i + 1 
+          SAO[[i]]  <- octaves(species_abundance(COM)) # get species abundance octaves
         } 
       }
     }
-  wall_time <- wall_time/60
-  TotT <- (proc.time()[3] - x)
+  wall_time <- wall_time/60 # getting time back into minutes
+  TotT <- (proc.time()[3] - x) # getting total run time in computer time
   save(SR, SAO, COM, TotT, speciation_rate, size, wall_time, interval_rich,
-       interval_oct, burn_in_generations, file = output_file_name)
+       interval_oct, burn_in_generations, file = output_file_name) # saving to an .rda outfile
 }
 
 
@@ -147,21 +147,13 @@ cluster_run <- function(speciation_rate, size, wall_time, interval_rich,
 #             burn_in_generations = 200, output_file_name = 'my_test_file_1.rda')
 # 
 # load(file = 'test.rda')
-# View('test.rda')
-# 
-# View(SR)
-# View(TotT)
-# View(SAO)
 
 ###############################################################################
-#rm(list=ls())
-#graphics.off()
-###############################################################################
-iter <- as.numeric(Sys.getenv("PBS_ARRAY_INDEX"))
+iter <- as.numeric(Sys.getenv("PBS_ARRAY_INDEX")) # getting iteration number from computer
 # iter <- seq(1, 3, 1)
 # iter = 25
-set.seed(iter)
-###############################################################################
+set.seed(iter) # setting random seed based on iteration 
+##############################setting J (commuity size) based on iteration number#################################################
 if(iter <= 25){ 
   J = 500
 } else if(iter <= 50){
@@ -171,7 +163,7 @@ if(iter <= 25){
 } else if(iter <= 100){
   J = 5000
 }
-#################################################################################
+#######################setting outfile names##########################################################
 output_file_name = paste('jc518', as.character(iter), '.rda', sep ='')
 # cluster_run(speciation_rate = 0.1, size = J, wall_time = 690, interval_rich = 1, interval_oct = size/10, 
 #             burn_in_generations = 8*size, output_file_name = output_file_name)
@@ -183,3 +175,9 @@ output_file_name = paste('jc518', as.character(iter), '.rda', sep ='')
 # iter = 76
 cluster_run(speciation_rate = 0.004346, size = J, wall_time = 690, interval_rich = 1, interval_oct = J/10,
             burn_in_generations = 8*J, output_file_name = output_file_name)
+
+
+############################################# loading the results back in ############################
+load('jc5181.rda')
+
+

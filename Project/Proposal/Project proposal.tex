@@ -1,7 +1,8 @@
 \documentclass[11pt,onehalfspacing]{article}
 
 \usepackage[left=2cm, right=2cm, top=2cm]{geometry}
-
+\usepackage{float}
+\usepackage{wrapfig}
 \usepackage{pgfgantt}
 \usepackage[T1]{fontenc}
 \usepackage[math]{iwona}
@@ -78,8 +79,16 @@ Methods for calculating error will include Maximum Likelihood, Bayesian, the poi
         \ganttbar{Conclusions/Discussion}{21}{27} \\
         \ganttbar{Refinement of writing}{5}{27} \\
         
-    \end{ganttchart}  
+    \end{ganttchart} \\
+\newpage
+I have seen and approved the proposal and the budget: 
 
+\begin{wrapfig}
+	\begin{center}
+		\includegraphics[width=50mm\textwidth]{signature.png}
+	\end{center}
+\end{wrapfig}
+\pagebreak
 \bibliography{bibliography}
 \bibliographystyle{plain}
 

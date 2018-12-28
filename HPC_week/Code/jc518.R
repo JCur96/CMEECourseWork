@@ -21,10 +21,10 @@ species_richness <- function(x) {
 
 # generating alternate monodominace intial condition
 initialise_min <- function(x) {
-  Sp_Num <- as.vector(rep_len(1, x))
+  Sp_Num <- rep(1, x)
   return(Sp_Num)
 }
-# initialise_min()
+# initialise_min(10)
 
 #########choose_two############################################
 

@@ -52,25 +52,26 @@ sum_vect <- function(x, y){
 par(mfrow=c(2,2))
 
 ######### plotting the data #########
-for(i in list(size_500, size_1000, size_2500, size_5000)){
+for(files in list(size_500, size_1000, size_2500, size_5000)){
   sim_oct = c()
-  for(names in i){
-    load(names)
-    cum_oct = c()
-    burn_in_end = burn_in_generations / interval_oct
-    for(octaves in SAO[burn_in_end:length(SAO)]){
+  for(i in files){
+    load(i)
+    sum_oct = c()
+    burn_in_end = burn_in_generations / interval_oct + 2
+    for(data in SAO[burn_in_end:length(SAO)]) {
       #pull out the octaves here
-      cum_oct = sum_vect(cum_oct, octaves) 
+      sum_oct = sum_vect(sum_oct, data) 
     }
-    avg_file = unlist(lapply(cum_oct, function(n) n/length(cum_oct) - burn_in_end))
-    sim_oct = sum_vect(sim_oct, avg_file)
+    avg_oct = unlist(lapply(sum_oct, function(n) n/(length(SAO) - burn_in_end)))
+    sim_oct = sum_vect(sim_oct, avg_oct)
   }
   #average simulatin octaves 
-  avg_SAO = unlist(lapply(sim_oct, function(n) n/length(i)))
-  barplot(avg_SAO, xlab='Octaves', ylab='Average Species Abundance', main=paste('Size =', size))
+  avg_SAO = unlist(lapply(sim_oct, function(n) n/length(files)))
+  barplot(avg_SAO, xlab='Octaves (population size)', ylab='Number of Species', main=paste('Size =', size))
   #print(avg_SAO)
   #print(i)
 }
+
 
 
 

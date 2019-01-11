@@ -19,12 +19,25 @@ import csv
 
 ## Phenomenological Model (also linear)
 ### General Cubic Polynomial
+# turn these into functions
+  
+def Cubic(B0, B1, B2, B3, T):
+    """Cubic polynomial function""" 
+    B0 + (B1)*T + (B2)*T^2 + (B3)*T^3
+    return
 
-B = B_[0] + (B_[1])*T + (B_[2])*T^2 + (B_[3])*T^3
-
+def briere(T, T0, Tm, B):
+    """briere model"""
+    B*T*(T-T0)*(abs(Tm-T)^(1/2))*(T<Tm)*(T>T0)
+    return
 
 
 ## Mechanistic model (non-linear)
 #### Schoolfield Model 
+def Schoolfield(B0, e, E, k, T, EI, TI, Eh, Th, I):
+    """Schoolfield model"""
+    ((B0^e)^(-E/k)*((1/T) - (1/283.15))) / (1 + e^(EI/k) * ((I/TI) - (1/T))) + (e^(Eh/k)((I/Th) - (I/T)))
+    return
 
-B = ((B_[0]^e)^(-E/k)*((1/T) - (1/283.15))) / (1 + e^(E_I/k) * ((I/T_I) - (1/T))) + (e^(E_h/k)((I/T_h) - (I/T)))
+## non-linear modelling
+#### non-linear least squares (got that semi complete in the R script he gave us)

@@ -4,7 +4,8 @@
 # Oct 2018
 # Visualizing MP data 
 ##############################################
-
+rm(list=ls())
+graphics.off()
 ############# Required packages ##############
 require(dplyr)
 require(plyr)
@@ -25,8 +26,8 @@ myvars <- c("OriginalTraitValue", "OriginalTraitUnit", "ConTemp", "FinalID", "St
 DF1 <- DF[myvars]
 
 FDF <- DF1 %>%
-  group_by(FinalID) %>%
-  filter(n()>5)
+  group_by(FinalID) %>% # creates unique IDs for identifying unique thermal responses
+  filter(n()>5) # removing sets with less than five points
 
 
 # making indivdual graphs for each unique ID
@@ -44,7 +45,7 @@ for (var in unique(FDF$FinalID)) {
   dev.off()
 }
 
-
+abs()
 
 
 

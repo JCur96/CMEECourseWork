@@ -9,11 +9,11 @@ Note that:
 
 ======================================================================
 ======================================================================
-Your Git repo size this week is about 1.59 MiB on disk 
+Your Git repo size this week is about 48.03 MiB on disk 
 
 PART 1: Checking project workflow...
 
-Found the following directories in parent directory: Week1, Assessment, Week2, .git
+Found the following directories in parent directory: Week6, Week1, Week7, Assessment, Week5, Week2, Week4, .git, Week3, Project, HPC_week, MiniPorject
 
 Found the following files in parent directory: README.txt, .gitignore
 
@@ -397,6 +397,44 @@ TSWLatexianTemp*
 # standalone packages
 *.sta
 
+# R gitignore
+
+# History files
+.Rhistory
+.Rapp.history
+
+# Session Data files
+.RData
+
+# Example code in package build process
+*-Ex.R
+
+# Output files from R CMD build
+/*.tar.gz
+
+# Output files from R CMD check
+/*.Rcheck/
+
+# RStudio files
+.Rproj.user/
+
+# produced vignettes
+vignettes/*.html
+vignettes/*.pdf
+
+# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
+.httr-oauth
+
+# knitr and R markdown default cache directories
+/*_cache/
+/cache/
+
+# Temporary files created by R markdown
+*.utf8.md
+*.knit.md
+
+# Shiny token, see https://shiny.rstudio.com/articles/shinyapps.html
+rsconnect/
 
 
 # Anything extra I've thought of
@@ -430,7 +468,7 @@ Author: Jake Curry, j.curry18@imperial.ac.uk
 ======================================================================
 Looking for the weekly directories...
 
-Found 2 weekly directories: Week1, Week2
+Found 8 weekly directories: HPC_week, Week1, Week2, Week3, Week4, Week5, Week6, Week7
 
 The Week1 directory will be assessed 
 
@@ -499,8 +537,7 @@ Printing contents of readme.txt:
 # test.txt.csv - the result of tab to csv
 **********************************************************************
 
-Found following files in results directory: README.txt, .txt, .csv...
-ideally, Results directory should be empty other than, perhaps, a readme. 
+Found following files in results directory: README.txt...
 
 Found 10 code files: ConcatenateTwoFiles.sh, UnixPract1.txt, CountLines.sh, variables.sh, CompileLaTeX.sh, tiff2png.sh, csvtospace.sh, MyExampleScript.sh, tabtocsv.sh, boilerplate.sh
 
@@ -731,29 +768,29 @@ rm: cannot remove '*.out': No such file or directory
 rm: cannot remove '*.snm': No such file or directory
 rm: cannot remove '*.toc': No such file or directory
 
-** (evince:26791): WARNING **: Error when getting information for file '/home/mhasoba/Documents/Teaching/IC_CMEE/2018-19/Coursework/StudentRepos/JakeCurry_JC518/Week1/Results/.pdf': No such file or directory
+** (evince:11442): WARNING **: Error when getting information for file '/home/mhasoba/Documents/Teaching/IC_CMEE/2018-19/Coursework/StudentRepos/JakeCurry_JC518/Week1/Results/.pdf': No such file or directory
 
-** (evince:26791): WARNING **: Error setting file metadata: No such file or directory
+** (evince:11442): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:26791): WARNING **: Error setting file metadata: No such file or directory
+** (evince:11442): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:26791): WARNING **: Error setting file metadata: No such file or directory
+** (evince:11442): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:26791): WARNING **: Error setting file metadata: No such file or directory
+** (evince:11442): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:26791): WARNING **: Error setting file metadata: No such file or directory
+** (evince:11442): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:26791): WARNING **: Error setting file metadata: No such file or directory
+** (evince:11442): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:26791): WARNING **: Error setting file metadata: No such file or directory
+** (evince:11442): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:26791): WARNING **: Error setting file metadata: No such file or directory
+** (evince:11442): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:26791): WARNING **: Error setting file metadata: No such file or directory
+** (evince:11442): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:26791): WARNING **: Error setting file metadata: No such file or directory
+** (evince:11442): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:26791): WARNING **: Error setting file metadata: No such file or directory
+** (evince:11442): WARNING **: Error setting file metadata: No such file or directory
 
 ======================================================================
 Inspecting script file tiff2png.sh...
@@ -826,7 +863,7 @@ Done!
 
 Code ran without errors
 
-Time consumed = 0.01336s
+Time consumed = 0.01035s
 
 ======================================================================
 Inspecting script file MyExampleScript.sh...
@@ -860,7 +897,7 @@ Hello mhasoba
 
 Code ran without errors
 
-Time consumed = 0.00553s
+Time consumed = 0.00523s
 
 ======================================================================
 Inspecting script file tabtocsv.sh...
@@ -893,7 +930,7 @@ Done!
 
 Code ran without errors
 
-Time consumed = 0.00784s
+Time consumed = 0.01119s
 
 ======================================================================
 Inspecting script file boilerplate.sh...
@@ -926,7 +963,7 @@ This is a shell script!
 
 Code ran without errors
 
-Time consumed = 0.00755s
+Time consumed = 0.00571s
 
 ======================================================================
 ======================================================================

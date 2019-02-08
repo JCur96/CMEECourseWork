@@ -1,4 +1,4 @@
-# !/usr/bin/env ipython3
+#!/usr/bin/env ipython3
 """ Learning to use the subprocess module in python """
 
 __appname__ = 'using_os.py'
@@ -27,7 +27,9 @@ def All_Dir_Files():
         ALL += [i for i in files if re.match(r'\w*', i)!=None]
     return ALL
 All_Dir_Files()
-len(All_Dir_Files)
+print("\nall dir and files in home")
+print(len(All_Dir_Files()))
+#print(All_Dir_Files())
 
 
 #################################
@@ -46,7 +48,8 @@ def F_D_C():
     return FDC
 
 F_D_C()
-len(F_D_C())
+print("\ndir in home starting with upper case c")
+print(len(F_D_C()))
 
 
 #################################
@@ -63,7 +66,8 @@ def C_orc():
         C_or_c += [i for i in files if re.match(r'^[Cc]\w*', i)!=None]
     return C_or_c
 C_orc()
-len(C_orc())
+print("\nfiles and dir in home starting with upper or lower case c")
+print(len(C_orc()))
 
 
 #################################
@@ -79,6 +83,7 @@ def DirC():
         DC += [i for i in subdir if re.match(r'^[Cc]\w*', i)!=None]      
     return DC
 DirC()
-len(DirC())
+print("\ndir in home starting with upper or lower case c")
+print(len(DirC()))
 
 

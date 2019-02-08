@@ -1,4 +1,4 @@
-# !/usr/bin/env ipython3
+#!/usr/bin/env python3
 """ Coding of the Lotka-Volterra model in python, without hard coding the input args """
 
 __appname__ = 'LV2.py'

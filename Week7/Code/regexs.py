@@ -1,4 +1,4 @@
-# !/usr/bin/env ipython3
+#!/usr/bin/env ipython3
 """ Regex in Python """
 
 __appname__ = 'regexs.py'
@@ -65,8 +65,8 @@ match = re.search(r"[\w\s]+,\s[\w\.@]+,\s[\w\s&]+",MyStr)
 match.group()
 
 MyStr = 'Samraat Pawar, s-pawar@imperial.ac.uk, Systems biology and ecological theory'
-match = re.search(r"[\w\s]+,\s[\w\.@]+,\s[\w\s&]+",MyStr)
-match.group()
+#match = re.search(r"[\w\s]+,\s[\w\.@]+,\s[\w\s&]+",MyStr)
+#match.group()
 
 match = re.search(r"[\w\s]+,\s[\w\.-]+@[\w\.-]+,\s[\w\s&]+",MyStr)
 match.group()

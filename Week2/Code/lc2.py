@@ -44,7 +44,7 @@ lssthn50 = list ([i[0] for i in rainfall if i[1]<50 ]) # list comprehension to c
 print(lssthn50) # print displays the new set
  
 # (3)
-mt1_loop = set()
+mt1_loop = list()
 for i in rainfall:
     if i[1]>100: # mathematical notation (i.e. >, <, works in python for rule creation as part of the if statement)
         mt1_loop.append(i) # the .append statement tells the loop to add elements which meet
@@ -53,7 +53,7 @@ print(mt1_loop)
 
 
 
-lt50_loop = set ()
+lt50_loop = list()
 for i in rainfall:
     if i[1]<50:
         lt50_loop.append(i[0])

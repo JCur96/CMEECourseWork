@@ -11,47 +11,152 @@ require(dplyr)
 require(plyr)
 require(tidyr)
 require(ggplot2)
-
+#install.packages("minpack.lm")
+#library(minpack.lm)
 
 ##################################################
-setwd("~/Documents/CMEECourseWork/MiniPorject/Code")
-
-
-
 # Reading data in 
-DF <- read.csv("../Data/BioTraits.csv", header = T)
+DF <- read.csv("Data/BioTraits.csv", header = T)
 
 # quick and dirty subsetting
 myvars <- c("OriginalTraitValue", "OriginalTraitUnit", "ConTemp", "FinalID", "StandardisedTraitName", "StandardisedTraitValue", "StandardisedTraitUnit")
-DF1 <- DF[myvars]
+DF <- DF[myvars]
 
-FDF <- DF1 %>%
+DF <- DF %>% # this works after reverting to using filter(n()>5) for some reason
+  filter(OriginalTraitValue >0) %>% # removing 0 and negative trait values
+  filter(OriginalTraitValue !=is.na(OriginalTraitValue)) %>% # removes rows with NA
   group_by(FinalID) %>% # creates unique IDs for identifying unique thermal responses
-  filter(n()>5) # removing sets with less than five points
-
+  filter(n()>5) # removing sets with less than five data points
+  
+DF$Group_IDs <- DF %>% group_indices(DF$FinalID)
 
 # making indivdual graphs for each unique ID
 plot_list = list()
-for (var in unique(FDF$FinalID)) { # unique id -- use final ID to make a list of unique ID's
-  p = ggplot(DF1[FDF$FinalID==var,], aes(ConTemp, OriginalTraitValue)) + geom_point()
+for (var in unique(DF$FinalID)) { # unique id -- use final ID to make a list of unique ID's
+  p = ggplot(DF[DF$FinalID==var,], aes(ConTemp, OriginalTraitValue)) + geom_point()
   plot_list[[var]] = p
 }
 
 # Save plots to tiff. Makes a separate file for each plot
-for (var in unique(FDF$FinalID)) {
-  file_name = paste("../Results/Prelim_Graphs/TPC_Graph_", var, ".tiff", sep="")
+for (var in unique(DF$FinalID)) {
+  file_name = paste("Results/Prelim_Graphs/TPC_Graph_", var, ".tiff", sep="")
   tiff(file_name)
   print(plot_list[[var]])
   dev.off()
 }
 
-abs()
+
+write.csv(DF, file = "Data/Updated_BioTraits.csv") # saving the newly prepared data (all prepared barring starting values)
 
 
 
 
 
 
+
+
+for(i in unique(DF$FinalID)){
+  add to this list <- by doing this fun
+    
+  }
+}
+
+
+
+
+
+
+#### initial fit data only ###
+MTD2116<- DF %>% filter(FinalID == 'MTD2116')
+test_plot = ggplot(MTD2116, aes(ConTemp, OriginalTraitValue)) +geom_point()
+test_plot
+
+
+MTD2116
+
+write.csv(MTD2116, file ="Data/MTD2116.csv")
+
+# originaltraitvalue as a function of temperature is what we are looking at here
+####################################################################
+# cubic is now working on an individual basis
+cubic_test <- lm(MTD2116$OriginalTraitValue ~ poly(MTD2116$ConTemp,3))
+
+plot(MTD2116$ConTemp, MTD2116$OriginalTraitValue)
+lines(MTD2116$ConTemp, predict(cubic_test, data.frame(x=MTD2116$ConTemp))) # I think this works
+summary(cubic_test)#R2 stat
+AIC(cubic_test) # gives the AIC score, which I think I'll need later
+BIC(cubic_test) # BIC scores
+
+
+briere <- function(T, T0, Tm, c){
+  return(c*T*(T-T0)*(abs(Tm-T)^(1/2))*as.numeric(T<Tm)*as.numeric(T>T0))
+}
+
+init_params <- runif(3, 0, 45)
+for(i in 1:100){
+  init_params <- 
+  try(briere(x, y, z), FALSE)
+}
+
+y<-((runif(1,0,10)*x)/(runif(1,0,10)+x))# starting values maybe idk
+
+test_br<-nls(OriginalTraitValue~briere(T=ConTemp, T0, Tm, c), start=list(T0=0, Tm=45, c=1), data=MTD2116)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+k = 8.617 * 10^-5 # blotzman constant for schoolfield model 
+Schoolfield <- function(B0, e, El, Eh, T, EI, TI,  Th, I){
+  ((B0^e)^(-E/k)*((1/T) - (1/283.15))) / (1 + e^(EI/k) * ((I/TI) - (1/T))) + (e^(Eh/k)((I/Th) - (I/T)))
+}
+
+
+
+
+
+
+
+
+SchoolFTpk <- function(B0, E, E_D, T_pk, T_ref, T)
+{ # Sharpe-Schoolfield model with explicit T_pk parameter
+  
+  # PARAMETERS/INPUTS (all temperatures in Kelvin) -
+  # temp   : temperature values to evaluate function at (single, scalar or vector of values)
+  # B0     : Normalisation constant (log transformed)
+  # E      : Activation energy (> 0)
+  # E_D    : High temperature de-activation energy (> 0) 
+  # T_ref  : Standardization (reference) temperature; set to 0 if not wanted   
+  # T_pk   : Temperature at which trait reaches peak value
+  
+  return(B0 + log(exp((-E/k) * ((1/T)-(1/T_ref)))/(1 + (E/(E_D - E)) * exp(E_D/k * (1/T_pk - 1/T)))))
+}
 ####################################################################
 # DF <- as.matrix(read.csv("../Data/BioTraits.csv", header = T)) 
 # ggplot(DF1, aes(x=ConTemp, y=OriginalTraitValue, group=FinalID)) +

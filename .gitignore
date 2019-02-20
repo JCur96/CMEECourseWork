@@ -419,3 +419,4 @@ rsconnect/
 find . -size +100M | cat
 
 
+.Rproj.user

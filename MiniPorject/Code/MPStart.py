@@ -10,7 +10,6 @@ __license__ = "License for this code/program"
 ################################
 #Imports
 from numpy import sqrt, exp
-import math
 import pandas as pd
 import scipy
 import matplotlib.pyplot as p

@@ -28,7 +28,10 @@ DF <- DF %>% # this works after reverting to using filter(n()>5) for some reason
   group_by(FinalID) %>% # creates unique IDs for identifying unique thermal responses
   filter(n()>5) # removing sets with less than five data points
   
-DF$Group_IDs <- DF %>% group_indices(DF$FinalID)
+DF$Temp_K <- NA # makes a temp in kelvin column
+
+DF$Temp_K<- DF$ConTemp + 273.15 # converts all temps to kelvin 
+
 
 # making indivdual graphs for each unique ID
 plot_list = list()

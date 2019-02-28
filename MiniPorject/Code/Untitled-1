@@ -1,7 +1,0 @@
-# !/usr/bin/env ipython3
-""" MiniProject initial opening of data and visualization """
-
-__appname__ = 'DaraWrang.py'
-__author__ = 'Jake Curry (j.curry18@imperial.ac.uk)'
-__version__ = '0.0.1'
-__license__ = "License for this code/program"

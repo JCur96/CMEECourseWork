@@ -16,10 +16,11 @@ require(ggplot2)
 
 ##################################################
 # Reading data in 
-DF <- read.csv("Data/BioTraits.csv", header = T)
+DF <- read.csv("../Data/BioTraits.csv", header = T)
 
 # quick and dirty subsetting
-myvars <- c("OriginalTraitValue", "OriginalTraitUnit", "ConTemp", "FinalID", "StandardisedTraitName", "StandardisedTraitValue", "StandardisedTraitUnit")
+myvars <- c("OriginalTraitValue", "OriginalTraitUnit", "ConTemp", "FinalID", 
+            "StandardisedTraitName", "StandardisedTraitValue", "StandardisedTraitUnit")
 DF <- DF[myvars]
 
 DF <- DF %>% # this works after reverting to using filter(n()>5) for some reason
@@ -27,10 +28,55 @@ DF <- DF %>% # this works after reverting to using filter(n()>5) for some reason
   filter(OriginalTraitValue !=is.na(OriginalTraitValue)) %>% # removes rows with NA
   group_by(FinalID) %>% # creates unique IDs for identifying unique thermal responses
   filter(n()>5) # removing sets with less than five data points
-  
-DF$Temp_K <- NA # makes a temp in kelvin column
 
-DF$Temp_K<- DF$ConTemp + 273.15 # converts all temps to kelvin 
+# adding columns for use in starting value calculations
+# converting to kelvin
+DF$Temp_K <- NA # makes a temp in kelvin column
+DF$Temp_K<- DF$ConTemp + 273.15 # converts all temps to kelvin
+
+# finding the smallest difference for schoolfield B0 calculations 
+DF$difference <- NA
+DF$difference <- sqrt((DF$Temp_K - 283.15)^2 )
+
+# logging trait value to calculate graident (E and Eh)
+DF$logTraitValue <- NA
+DF$logTraitValue <- log(DF$OriginalTraitValue)
+
+# finding 1/kT (k being boltzmann constant) for graident calculations
+k = 8.617e-5 # setting the boltzmann constant
+DF$GradientTemp <- NA 
+DF$GradientTemp <- 1/(DF$Temp_K*k) # calculating the temperature scale for making the gradient calculations
+
+# # starting values for schoolfield calculations
+# start_params <- function(IDs) {
+#   #"""generates starting values for schoolfield models for each group/FinalID"""
+#   temp <- ID$GradientTemp 
+#   logtraitval <- ID$logTraitValue   
+#   midpoint <- max(ID$logTraitValue)
+#   
+#   EGrad = lm(temp[:midpoint] ~ logtraitval[:midpoint])
+#   EhGrad = lm(temp[midpoint:] ~ logtraitval[midpoint:])
+#   
+#   B0 = exp(EGrad[2]*(1/(k*283.15)) + EGrad[1])
+#   
+#   Th = ((mean(logtraitval) - logtraitval*B0/EhGrad[0])**-1)/k
+#   list = list(E = EGrad[0], Eh = EhGrad[0], B0 = B0, Th = Th)
+#   list = do.call("rbind", df)
+#   return(df)
+# }
+# 
+# SF_start_params = list()
+# SFlist = list()
+# 
+# for(unique_id in unique(DF$FinalID)){
+#   try(SF_start_params <- start_params(unique_id),
+#    silent = TRUE)
+# }
+ 
+ 
+
+minrows <- DF %>% group_by(FinalID) %>% slice(which.min(difference)) # produces all the rows which have the closest trait value to B0
+
 
 
 # making indivdual graphs for each unique ID
@@ -58,11 +104,7 @@ write.csv(DF, file = "Data/Updated_BioTraits.csv") # saving the newly prepared d
 
 
 
-for(i in unique(DF$FinalID)){
-  add to this list <- by doing this fun
-    
-  }
-}
+
 
 
 
@@ -74,10 +116,8 @@ MTD2116<- DF %>% filter(FinalID == 'MTD2116')
 test_plot = ggplot(MTD2116, aes(ConTemp, OriginalTraitValue)) +geom_point()
 test_plot
 
-
-MTD2116
-
-write.csv(MTD2116, file ="Data/MTD2116.csv")
+MTD2116 <- read.csv("../Data/Biotraits_with_start_params.csv", header = T)
+write.csv(MTD2116, file ="../Data/MTD2116.csv")
 
 # originaltraitvalue as a function of temperature is what we are looking at here
 ####################################################################

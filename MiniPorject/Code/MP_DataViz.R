@@ -47,9 +47,12 @@ k = 8.617e-5 # setting the boltzmann constant
 DF$GradientTemp <- NA 
 DF$GradientTemp <- 1/(DF$Temp_K*k) # calculating the temperature scale for making the gradient calculations
 
-write.csv(DF, file = "Data/Updated_BioTraits.csv") # saving the newly prepared data (all prepared barring starting values)
+write.csv(DF, file = "../Data/Updated_BioTraits.csv") # saving the newly prepared data (all prepared barring starting values)
 
+DF <- read.csv("../Data/Biotraits_with_start_params.csv")
+DF <- na.omit(DF)
 
+write.csv(DF, file = "../Data/Biotraits_start_no_na.csv")
 
 # making indivdual graphs for each unique ID
 plot_list = list()

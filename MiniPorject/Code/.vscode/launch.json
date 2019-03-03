@@ -12,7 +12,7 @@
             "program": "${file}",
             "console": "integratedTerminal",
             "args": [
-                "../Data/Biotraits_with_start_params.csv"
+                "../Data/Biotraits_start_no_na.csv"
             ]
         },
         {

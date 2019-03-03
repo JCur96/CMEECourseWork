@@ -47,35 +47,7 @@ k = 8.617e-5 # setting the boltzmann constant
 DF$GradientTemp <- NA 
 DF$GradientTemp <- 1/(DF$Temp_K*k) # calculating the temperature scale for making the gradient calculations
 
-# # starting values for schoolfield calculations
-# start_params <- function(IDs) {
-#   #"""generates starting values for schoolfield models for each group/FinalID"""
-#   temp <- ID$GradientTemp 
-#   logtraitval <- ID$logTraitValue   
-#   midpoint <- max(ID$logTraitValue)
-#   
-#   EGrad = lm(temp[:midpoint] ~ logtraitval[:midpoint])
-#   EhGrad = lm(temp[midpoint:] ~ logtraitval[midpoint:])
-#   
-#   B0 = exp(EGrad[2]*(1/(k*283.15)) + EGrad[1])
-#   
-#   Th = ((mean(logtraitval) - logtraitval*B0/EhGrad[0])**-1)/k
-#   list = list(E = EGrad[0], Eh = EhGrad[0], B0 = B0, Th = Th)
-#   list = do.call("rbind", df)
-#   return(df)
-# }
-# 
-# SF_start_params = list()
-# SFlist = list()
-# 
-# for(unique_id in unique(DF$FinalID)){
-#   try(SF_start_params <- start_params(unique_id),
-#    silent = TRUE)
-# }
- 
- 
-
-minrows <- DF %>% group_by(FinalID) %>% slice(which.min(difference)) # produces all the rows which have the closest trait value to B0
+write.csv(DF, file = "Data/Updated_BioTraits.csv") # saving the newly prepared data (all prepared barring starting values)
 
 
 
@@ -95,125 +67,109 @@ for (var in unique(DF$FinalID)) {
 }
 
 
-write.csv(DF, file = "Data/Updated_BioTraits.csv") # saving the newly prepared data (all prepared barring starting values)
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-#### initial fit data only ###
-MTD2116<- DF %>% filter(FinalID == 'MTD2116')
-test_plot = ggplot(MTD2116, aes(ConTemp, OriginalTraitValue)) +geom_point()
-test_plot
-
-MTD2116 <- read.csv("../Data/Biotraits_with_start_params.csv", header = T)
-write.csv(MTD2116, file ="../Data/MTD2116.csv")
-
-# originaltraitvalue as a function of temperature is what we are looking at here
-####################################################################
-# cubic is now working on an individual basis
-cubic_test <- lm(MTD2116$OriginalTraitValue ~ poly(MTD2116$ConTemp,3))
-
-plot(MTD2116$ConTemp, MTD2116$OriginalTraitValue)
-lines(MTD2116$ConTemp, predict(cubic_test, data.frame(x=MTD2116$ConTemp))) # I think this works
-summary(cubic_test)#R2 stat
-AIC(cubic_test) # gives the AIC score, which I think I'll need later
-BIC(cubic_test) # BIC scores
-
-
-briere <- function(T, T0, Tm, c){
-  return(c*T*(T-T0)*(abs(Tm-T)^(1/2))*as.numeric(T<Tm)*as.numeric(T>T0))
-}
-
-init_params <- runif(3, 0, 45)
-for(i in 1:100){
-  init_params <- 
-  try(briere(x, y, z), FALSE)
-}
-
-y<-((runif(1,0,10)*x)/(runif(1,0,10)+x))# starting values maybe idk
-
-test_br<-nls(OriginalTraitValue~briere(T=ConTemp, T0, Tm, c), start=list(T0=0, Tm=45, c=1), data=MTD2116)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-k = 8.617 * 10^-5 # blotzman constant for schoolfield model 
-Schoolfield <- function(B0, e, El, Eh, T, EI, TI,  Th, I){
-  ((B0^e)^(-E/k)*((1/T) - (1/283.15))) / (1 + e^(EI/k) * ((I/TI) - (1/T))) + (e^(Eh/k)((I/Th) - (I/T)))
-}
-
-
-
-
-
-
-
-
-SchoolFTpk <- function(B0, E, E_D, T_pk, T_ref, T)
-{ # Sharpe-Schoolfield model with explicit T_pk parameter
-  
-  # PARAMETERS/INPUTS (all temperatures in Kelvin) -
-  # temp   : temperature values to evaluate function at (single, scalar or vector of values)
-  # B0     : Normalisation constant (log transformed)
-  # E      : Activation energy (> 0)
-  # E_D    : High temperature de-activation energy (> 0) 
-  # T_ref  : Standardization (reference) temperature; set to 0 if not wanted   
-  # T_pk   : Temperature at which trait reaches peak value
-  
-  return(B0 + log(exp((-E/k) * ((1/T)-(1/T_ref)))/(1 + (E/(E_D - E)) * exp(E_D/k * (1/T_pk - 1/T)))))
-}
-####################################################################
-# DF <- as.matrix(read.csv("../Data/BioTraits.csv", header = T)) 
-# ggplot(DF1, aes(x=ConTemp, y=OriginalTraitValue, group=FinalID)) +
-#   geom_point() + 
-#   facet_wrap( ~ FinalID) # either group=FinalID or facet_wrap(FinalID)
-# myvars <- c("OriginalTraitValue", "ConTemp", "FinalID")
-# DF1 <- DF[myvars]
-# # Need to subset/group by trait name I think, otherwise this is very meaningless
-# GDF <- group_by(DF1, FinalID)
+# #### initial fit data only ###
+# MTD2116<- DF %>% filter(FinalID == 'MTD2116')
+# test_plot = ggplot(MTD2116, aes(ConTemp, OriginalTraitValue)) +geom_point()
+# test_plot
+# 
+# MTD2116 <- read.csv("../Data/Biotraits_with_start_params.csv", header = T)
+# MTD2116 <- MTD2116 %>% filter(FinalID == 'MTD2116')
+# write.csv(MTD2116, file ="../Data/MTD2116.csv")
+# 
+# # # starting values for schoolfield calculations
+# # start_params <- function(IDs) {
+# #   #"""generates starting values for schoolfield models for each group/FinalID"""
+# #   temp <- ID$GradientTemp 
+# #   logtraitval <- ID$logTraitValue   
+# #   midpoint <- max(ID$logTraitValue)
+# #   
+# #   EGrad = lm(temp[:midpoint] ~ logtraitval[:midpoint])
+# #   EhGrad = lm(temp[midpoint:] ~ logtraitval[midpoint:])
+# #   
+# #   B0 = exp(EGrad[2]*(1/(k*283.15)) + EGrad[1])
+# #   
+# #   Th = ((mean(logtraitval) - logtraitval*B0/EhGrad[0])**-1)/k
+# #   list = list(E = EGrad[0], Eh = EhGrad[0], B0 = B0, Th = Th)
+# #   list = do.call("rbind", df)
+# #   return(df)
+# # }
+# # 
+# # SF_start_params = list()
+# # SFlist = list()
+# # 
+# # for(unique_id in unique(DF$FinalID)){
+# #   try(SF_start_params <- start_params(unique_id),
+# #    silent = TRUE)
+# # }
 # 
 # 
-# # plot(DF1$FinalID ~ DF1$OriginalTraitValue + DF$ConTemp)
-# # plot(DF1$OriginalTraitValue ~ DF1$FinalID + DF$ConTemp)
-# # plot(DF1$OriginalTraitValue ~ DF$ConTemp + DF1$FinalID)
 # 
-# plot(DF1$OriginalTraitValue ~ DF1$ConTemp)
-
+# minrows <- DF %>% group_by(FinalID) %>% slice(which.min(difference)) # produces all the rows which have the closest trait value to B0
+# 
+# # originaltraitvalue as a function of temperature is what we are looking at here
+# ####################################################################
+# # cubic is now working on an individual basis
+# cubic_test <- lm(MTD2116$OriginalTraitValue ~ poly(MTD2116$ConTemp,3))
+# 
+# plot(MTD2116$ConTemp, MTD2116$OriginalTraitValue)
+# lines(MTD2116$ConTemp, predict(cubic_test, data.frame(x=MTD2116$ConTemp))) # I think this works
+# summary(cubic_test)#R2 stat
+# AIC(cubic_test) # gives the AIC score, which I think I'll need later
+# BIC(cubic_test) # BIC scores
+# 
+# 
+# briere <- function(T, T0, Tm, c){
+#   return(c*T*(T-T0)*(abs(Tm-T)^(1/2))*as.numeric(T<Tm)*as.numeric(T>T0))
+# }
+# 
+# init_params <- runif(3, 0, 45)
+# for(i in 1:100){
+#   init_params <- 
+#   try(briere(x, y, z), FALSE)
+# }
+# 
+# y<-((runif(1,0,10)*x)/(runif(1,0,10)+x))# starting values maybe idk
+# 
+# test_br<-nls(OriginalTraitValue~briere(T=ConTemp, T0, Tm, c), start=list(T0=0, Tm=45, c=1), data=MTD2116)
+# 
+# k = 8.617 * 10^-5 # blotzman constant for schoolfield model 
+# Schoolfield <- function(B0, e, El, Eh, T, EI, TI,  Th, I){
+#   ((B0^e)^(-E/k)*((1/T) - (1/283.15))) / (1 + e^(EI/k) * ((I/TI) - (1/T))) + (e^(Eh/k)((I/Th) - (I/T)))
+# }
+# 
+# 
+# SchoolFTpk <- function(B0, E, E_D, T_pk, T_ref, T)
+# { # Sharpe-Schoolfield model with explicit T_pk parameter
+#   
+#   # PARAMETERS/INPUTS (all temperatures in Kelvin) -
+#   # temp   : temperature values to evaluate function at (single, scalar or vector of values)
+#   # B0     : Normalisation constant (log transformed)
+#   # E      : Activation energy (> 0)
+#   # E_D    : High temperature de-activation energy (> 0) 
+#   # T_ref  : Standardization (reference) temperature; set to 0 if not wanted   
+#   # T_pk   : Temperature at which trait reaches peak value
+#   
+#   return(B0 + log(exp((-E/k) * ((1/T)-(1/T_ref)))/(1 + (E/(E_D - E)) * exp(E_D/k * (1/T_pk - 1/T)))))
+# }
+# ####################################################################
+# # DF <- as.matrix(read.csv("../Data/BioTraits.csv", header = T)) 
+# # ggplot(DF1, aes(x=ConTemp, y=OriginalTraitValue, group=FinalID)) +
+# #   geom_point() + 
+# #   facet_wrap( ~ FinalID) # either group=FinalID or facet_wrap(FinalID)
+# # myvars <- c("OriginalTraitValue", "ConTemp", "FinalID")
+# # DF1 <- DF[myvars]
+# # # Need to subset/group by trait name I think, otherwise this is very meaningless
+# # GDF <- group_by(DF1, FinalID)
+# # 
+# # 
+# # # plot(DF1$FinalID ~ DF1$OriginalTraitValue + DF$ConTemp)
+# # # plot(DF1$OriginalTraitValue ~ DF1$FinalID + DF$ConTemp)
+# # # plot(DF1$OriginalTraitValue ~ DF$ConTemp + DF1$FinalID)
+# # 
+# # plot(DF1$OriginalTraitValue ~ DF1$ConTemp)
+# 

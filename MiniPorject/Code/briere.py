@@ -18,7 +18,7 @@ DEFAULT_CSV = os.path.join("Data", "Updated_BioTraits.csv")
 DEFAULT_INIT_MIN_TEMP = 0.0
 DEFAULT_INIT_MAX_TEMP = 45.0
 DEFAULT_CONST = 0.1
-TEMPERATURE_LIMIT = 50  # +/-50
+TEMPERATURE_LIMIT = 25.0  # +/-50
 
 
 class DataFit(object):

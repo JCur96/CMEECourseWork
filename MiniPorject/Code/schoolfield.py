@@ -98,7 +98,8 @@ class DataFit(object):
         schoolfield_out = minimize(
             self.schoolfield, schoolfield_params, args=(
                 start_params["temp_k"], start_params["logtraitval"]))
-
+        #print(schoolfield_out.params)
+        #print(schoolfield_out)
         return DataFrame({
             "UniqueID": unique_id,
             "B0": [schoolfield_out.params["B0"].value],

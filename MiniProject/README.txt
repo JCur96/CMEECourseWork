@@ -20,7 +20,8 @@ scipy -- Boltzmann constant taken from here
 statistics -- Used in gradient calculations (linregress)
 
 R:
-ggplot2 -- used for end plotting
+dplyr -- Used in data handling (pipes are useful)
+ggplot2 -- Used for end plotting
 
 Directories:
 Code:

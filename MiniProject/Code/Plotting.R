@@ -79,9 +79,9 @@ ggsave("../Results/Figure_Graphic/Fig_MTD4400.pdf", plot_list$MTD4400)
 
 # smaller sample of plots 
 sample_DF <- as.data.frame(unique(DF1$UniqueID))
-sample_DF <- as.data.frame(sample_DF$`unique(DF1$UniqueID)`[1:25])
+sample_DF <- as.data.frame(sample_DF$`unique(DF1$UniqueID)`[1:380])
 names(sample_DF) <- c("UniqueID")
-sample_plts <- plot_list[1:25]
+sample_plts <- plot_list[1:380]
 
 for (unique_id in unique(sample_DF$UniqueID)) {
   file_name = paste("../Results/TPC_Graphs/TPC_Graph_", unique_id, ".bmp", sep="")

@@ -1,0 +1,161 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{setspace}
+\doublespacing
+\usepackage{lineno}
+\linenumbers
+\usepackage{authblk}
+\parskip=\baselineskip
+\usepackage{booktabs}
+\usepackage{graphicx}
+\graphicspath{ {../Results/Figure_Graphic/} }
+\newcommand{\quickwordcount}[1]{%
+  \immediate\write18{texcount -1 -sum=1,0,0,0,0,1,1 -merge #1.tex > #1-words.sum }%
+  Word Count: \input {#1-words.sum}%
+}
+
+\title{A Fitting Problem; Comparisons of Three Typical Models used in Thermal Performance Modelling}
+\author{Jake Curry }
+\affil{Department of Life Sciences, Imperial College London}
+\date{March 2019}
+
+\begin{document}
+
+\maketitle
+\begin{center}
+    \quickwordcount{main}
+\end{center}
+\newpage
+\section{Abstract }
+The majority of life on Earth is ectothermic, relying on climatic regulation of body temperature. This has consequences for metabolism, which can have effects from the level of the individual to that of the species as a whole.
+Thermal Performance Modelling therefore has utility in informing conservation decisions with regards to global climate change. Model selection is relatively new method of hypothesis testing which allows for several hypotheses or models to be compared at once. Finding a model which best describes species' response to ambient temperature change is required to make broad scale assessment of which species are at risk. 
+This study compares three commonly used thermal performance models to elucidate which is potentially the best candidate for this task. It shows that simpler models, such as the Cubic often perform best, but provide limited information with regards to the biological mechanisms behind these responses. Investigation of a wider selection of models is recommended to find a model which provides both frequently good fit and provides biologically meaningful reasons for doing so. 
+
+\section{Introduction}
+Understanding the thermal response of metabolic processes is key to understanding a great deal about life as a whole, as all living things require enzymatic activity of one sort or another. This means that enzyme activity and more specifically metabolism are fundamental in influencing how an organism and the environment it lives in interact. 
+
+Global Climate Change is set to rapidly alter ambient temperatures the world over, much faster than most species can potentially either evolve or shift range(\cite{Visser2008}, \cite{Thomas2012}, \cite{Jaeschke2013}, \cite{Gilman2010} ). The relevance of this to metabolic response is that the overwhelming majority of species are ectothermic and heterothermic, that is; relying entirely on climatic maintenance of body temperature, which varies over time.  
+
+Changes in ambient temperature therefore has profound consequences on metabolic activity in a significant proportion of species, ranging from accelerated growth rates(\cite{Brown2004}), to behavioural traits(\cite{Saastamoinen2008}) and beyond. Individual and species level fitness(\cite{Gilchrist1995}) and survival(\cite{Huey2009}) are influenced by all these traits, meaning this has the potential to radically alter ecosystems from species level upwards.
+
+The mechanisms by which this occurs are well established (\cite{Brown2004}, \cite{Savage2004});
+Metabolic rate is intrinsically linked to temperature, as temperature increases so does the rate of reaction, as enzymes are more likely to collide with their substrate. This is true to a given point or optima, after which rate of reaction decreases as enzymes lose structural stability or denature. 
+
+Therefore, finding a theoretical model which can best be used to predict how thermal response will change across a broad range of species would seem imperative. There are already numerous theoretical models to predict thermal response, and there has already been work done to find the relative ‘best’ of these models(\cite{Angilletta2006}, \cite{Shi2010}. 
+
+This study used model selection to do this. Model selection is a robust framework used to identify the most likely explanation given a set of competing hypotheses or models(\cite{Johnson2004}), and an alternative to traditional null-hypothesis testing which moves away from the use of p values. This is beneficial in that it sidesteps the ongoing debate over whether p values are too arbitrary, and allows for multiple hypotheses or models to be evaluated at once.  
+
+There are two categories of model, phenomenological and mechanistic. Phenomenological models describe the relationship between data, in a way that is consistent with underlying theory, but not derived from it. Mechanistic models try to predict the data by understanding the mechanisms that behind it. 
+
+This report builds on the body of work looking at which approach, phenomenological, or mechanistic, and subsequently which model out of three commonly used models, can be best used to model thermal response for a wide range of species.  
+
+The models used in this case are; Eqn 1. a simple cubic polynomial, Eqn 2. the Briere model(\cite{Briere1999}), which are both phenomenological, and Eqn 3. the Sharpe-Schoolfield model(\cite{Schoolfield1981}), which is mechanistic. 
+
+General cubic polynomial (Eqn 1.)
+\begin{equation}
+    B = B_0 + B_1 T + B_2 T^2 + B_3 T^3
+\end{equation}
+
+The general cubic polynomial model describes changes in trait value ($B$) as a response to temperature ($T$). Temperature is measured in degrees Celsius. None of the parameters have any biological meaning in this case. 
+
+Briere Model(Eqn 2.)
+\begin{equation}
+    B = B_0 T (T-T_0) \sqrt{T_m-T}
+\end{equation}
+
+The Briere model describes the data by using ecologically meaningful parameters, but is still a phenomenological model. ($B0$) is a normalisation constant, ($T_0$), is the minimum feasible temperature of the trait, and ($T_m$) is the maximum feasible temperature of the trait. ($T$) is simply the temperature in degrees Celsius.  
+
+Modified Sharpe-Schoolfield Model
+(Eqn 3.)
+\begin{equation}
+     B = \frac{B_0 e^{\frac{-E}{k} (\frac{1}{T} - \frac{1}{283.15})}} { 1 + e^{\frac{E_h}{k} (\frac{1}{T_h} - \frac{1}{T})}}
+\end{equation} 
+
+The Sharpe-Schoolfield equation attempts to explain thermal response due to changes in enzyme stability due to temperature. This is a commonly used modification of the Sharpe-Schoolfield equation, which excludes low temperature parameter values. This was used as the data used did not contain many trait values measured at low temperatures(\cite{Schoolfield1981}). 
+
+Temperature ($T$) is measured in Kelvin (K), ($k$) is the Boltzmann constant ($8.617 \times 10^{-5}$ eV $\cdot$ K$^{-1}$) and ($B_0$) is the trait value at a reference temperature (in this case 283.15K or 10 degrees Celsius). ($E$) is the activation energy of the enzyme, ($Eh$) is the enzymes high temperature de-activation energy and ($Th$) is the point at which 50\% of the enzymes are deactivated in high temperature scenarios.
+ 
+\section{Methods}
+The data used is taken from the Biotraits database (\cite{Dell2011}). This database contains the thermal responses from a variety of species, with the data taken from lab experiments.
+Data were processed in R(\cite{R2019}). Data was grouped by a unique identifier (a FinalID column is present in the dataset, which gives an ID for each individual experiment). Only columns necessary for this analysis were retained to increase the speed of subsequent operations. Experiments containing NA, negative and zero trait values (values in the OriginalTraitValue column) were removed to facilitate analysis. Data were then filtered to remove any experiment containing less than 5 data points, as at least this number were needed for fitting.  
+Temperature in Kelvin and the logarithm of each trait value was calculated and added as a column. This was to facilitate calculation of starting values and fitting of the Sharpe-Schoolfield equation. 
+A column containing the temperature needed to calculate gradient for the modified Sharpe-Schoolfield model was added. The values for this column were calculated to be ($\frac{ 1}{K \times k}$).
+
+The Sharpe-Schoolfield model also requires the calculation of starting values for each of its parameters. This was done in Python(\cite{Python2019}). The processed data was handed to a Python script which calculated the starting values of E, Eh, Th and B0 from the data. 
+E was calculated to be the gradient of a linear regression of temperature as a function of log trait value, from the start of the data to the midpoint of the data. Temperature was the ($\frac{ 1}{K \times k}$) temperature calculated earlier for this purpose. The midpoint was the temperature at which log trait value was at its highest.
+Eh was calculated to be the gradient of a linear regression of temperature as a function of log trait value from the midpoint of the data to end of the data. Temperature was the ($\frac{ 1}{K \times k}$) temperature calculated earlier for this purpose. 
+Th was calculated to be either the mean of the log trait value minus the log trait value to the power of $B0$ over the gradient of $Eh$ to the power negative 1 all over $k$, 
+or the temperature at which the log trait value was at its peak, as this is a close approximation of a true Th. The reason this secondary value might be used was to increase the number of starting parameters which were successfully generated. 
+B0 was calculated to be the exponent of the gradient of $E$ times one over $k$ tims $283.15$ plus the intercept of $E$. 
+
+Models were fitted in python 3.6.7. Model comparison was done in R 3.4.4, the lowest AIC and BIC for each experiment as well as the number of times each model successfully converged was tallied (Table 1.). This allows for a broad scale comparison of the three models used, as AIC is only comparable on a per data set basis, so the number of times a model produced the lowest score allows comparison across data sets.
+
+\subsection{Computing languages}
+The following programming languages were used; Python 3.6.7, R 3.4.4, Bash 4.4.19. 
+Python was used for calculation of starting values and model fitting. Python was chosen for these tasks as it is a relatively ‘fast’ language when compared to R, and these processes were computationally demanding, especially with large data sets such as this (1586 unique experiments to be fitted after data wrangling). The PEP 8 style guide(\cite{PEP82019}) was used to increase readability and to better conform to standards. Classes and the self method were used better conform to standards of Pythonic programming. 
+
+R was used to wrangle the data and to produce graphics (\cite{GGplot2016} and summary statistics. R was chosen for these tasks as it remains one of the simplest ways to produce high quality graphics, and is simple to wrangle data in. 
+
+Bash was used to tie the workflow together, and is a simple language to call other scripts from.
+
+\section{Results }
+Post wrangling the data contained 1586 unique data sets which could be used for fitting the both the Cubic and Briere models and after calculation of starting parameters 1319 unique data sets which could be used for fitting the modified Sharpe-Schoolfield model. Out of these 9 models did not converge for both Cubic and Briere models, and 559 did not converge for the Sharpe-Schoolfield model. Figure1. Shows a typical example of a data set where all three models converged.  It’s clear that both the Cubic and Sharpe-Schoolfield models have better fit than the Briere model. Figure1. demonstrates how the Sharpe-Schoolfield model often gives a good fit even if it is not the best fit. This can be more useful than simply having the best fit as it provides a good fit and a biological explanation of why the data respond the way they do.
+
+ \begin{figure}[!htb]
+        \center{\includegraphics[width=\textwidth]
+        {Fig_MTD4400.pdf}}
+        \caption{\label{fig:my-label} A data set where Cubic, Briere and Sharpe-Schoolfield all converged, and provided good fit. Cubic (AIC = 3.25, BIC = 3.03), Briere (AIC = 2.21, BIC = 2.05), Sharpe-Schoolfield (AIC = 9.12, BIC = 8.90). In this case Briere fit the best, bit not significantly differently from Cubic. Sharpe-Schoolfield had the worst fit, but from visual inspection alone it still gives a good fit.}
+      \end{figure}
+    
+
+Using both the Akaike Information Criterion (AIC) and Bayesian Information Criterion (BIC), otherwise known as the Schwarz Criterion,  as measures of fit, the Cubic model provided the best fit the most frequently, as well as fitting the most data sets overall (jointly with Briere), (Table 1.). 
+AIC is a method of describing the relative quality of sets of statistical models used on a given data set. It takes into account goodness of fit and over-fitting in that it has a penalty term for increasing the number of free parameters. This reduces the impact of models over-fitting a given set of data. BIC is similar to AIC but introduces a larger penalty for increasing the number of parameters.
+
+
+\begin{table}[h]
+    \centering
+    \caption{The number of times each model scored the best AIC or BIC and how many fits each model managed total. Cubic produced the most fits and was most often scored best in both AIC and BIC.\\}
+    \begin{tabular}{c|c|c|c}
+    \toprule
+          Model & \# of times scored best AIC & \# of times scored best BIC & \# Fitted  Total\\ \midrule
+ Cubic & 362 & 356 & 1577\\ 
+ Briere & 89 & 99 & 1577\\  
+ Sharpe-Schoolfield & 309 & 305 & 760 \\   \bottomrule
+    \end{tabular}
+    \label{tab:my_label}
+\end{table}
+
+Table 2. shows that when comparing the Briere and Cubic models directly across all data sets they fit Cubic still fits better more often than Briere. 
+
+\begin{table}[h]
+    \centering
+    \caption{If Sharpe-Schoolfield is dropped and the number of models being directly compared increases Cubic still fits best the best most frequently.\\}
+    \begin{tabular}{c|c|c}
+    \toprule
+      Model & Number of times scored best AIC & Number of times scored best BIC\\ \midrule
+ Cubic & 1262 & 1236\\ 
+ Briere & 315 & 341 \\  \bottomrule
+    \end{tabular}
+    \label{tab:my_label}
+\end{table}
+
+\section{Discussion}
+The Cubic model provided the best fit most often and fit the most data sets overall, with the Sharpe-Schoolfield providing the second best fit in data sets where all three models converged, but the fewest fits overall. The fact that the modified Sharpe-Schoolfield model did not fit as well as the Cubic overall is somewhat surprising, given that the Sharpe-Schoolfield model was created with the intention of fitting thermal performance curves(\cite{Schoolfield1981}). However, on the data sets both it and the Cubic model converged on it had nearly as many best fits as the Cubic model and it provides an explanation of the biological mechanisms which drive metabolic response to ambient temperature change. In that sense it is more useful than an entirely generalised equation, as it provides greater insight which can be used to better fine tune our understanding of metabolic response to temperature change overall. 
+
+As both the Cubic and Briere models are phenomenological, they provide little to no insight into the biological mechanisms behind the metabolic response to thermal change. This means their goodness of fit is of limited use. However, It is useful in making broad scale predictions in how a wider range of species might respond to changes in ambient temperature, which can be used to make an assessment of species under greatest threat from global climate change. 
+
+With that being the case, the fact that the data used were predominantly collected from lab studies looking at response to acute, rather than chronic temperature change needs to be considered. There is a body of evidence that suggests that many species are able to acclimate or acclimatise to chronic temperature changes(\cite{Schulte2011}, \cite{Podrabsky2004}). 
+
+However, information about how a species responds in the short term to increasing ambient temperature is still useful. It can help identify species which are at particular risk from climate change, in the short term, which is still a worthy task and ultimately can aid in biodiversity conservation.   
+
+This study provides a very broad scale approach to understanding enzyme based reactions within species, and as such suffers from some key limitations. For example, It does not differentiate between types of reactions, such as photosynthesis and respiration rate. It is possible that type difference has an impact on which model fits best. Equally, it is possible to get a greater number of the Sharpe-Schoolfield models to converge by varying the starting values from those calculated. Due to time constraints this was not feasible in this study. 
+
+Further work should address the above issues, and include a greater number of competing models, as there are numerous alternatives which are commonly used in the field of metabolic ecology, such as the unmodified Sharpe-Schoolfield, the Arrhenius and Modified Briere models, but were not considered here due to time constraints. 
+
+To conclude, both phenomenological and mechanistic models have utility in predicting how a species will react to global climate change. For the broadest method of predicting how a species reacts the simple Cubic model is likely to provide the greatest number of fits with a reasonable degree of accuracy, but to understand the mechanisms behind the response a mechanistic model, such as the Sharpe-Schoolfield model is likely a much better candidate. 
+
+\section{References}
+\bibliography{bibliography.bib}{}
+\bibliographystyle{plain}
+
+\end{document}

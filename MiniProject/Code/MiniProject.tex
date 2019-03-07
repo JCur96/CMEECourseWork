@@ -9,10 +9,8 @@
 \usepackage{booktabs}
 \usepackage{graphicx}
 \graphicspath{ {../Results/Figure_Graphic/} }
-\newcommand{\quickwordcount}[1]{%
-  \immediate\write18{texcount -1 -sum=1,0,0,0,0,1,1 -merge #1.tex > #1-words.sum }%
-  Word Count: \input {#1-words.sum}%
-}
+\usepackage{natbib}
+
 
 \title{A Fitting Problem; Comparisons of Three Typical Models used in Thermal Performance Modelling}
 \author{Jake Curry }
@@ -23,7 +21,7 @@
 
 \maketitle
 \begin{center}
-    \quickwordcount{main}
+   Word Count: 2305
 \end{center}
 \newpage
 \section{Abstract }
@@ -81,7 +79,7 @@ Data were processed in R(\cite{R2019}). Data was grouped by a unique identifier 
 Temperature in Kelvin and the logarithm of each trait value was calculated and added as a column. This was to facilitate calculation of starting values and fitting of the Sharpe-Schoolfield equation. 
 A column containing the temperature needed to calculate gradient for the modified Sharpe-Schoolfield model was added. The values for this column were calculated to be ($\frac{ 1}{K \times k}$).
 
-The Sharpe-Schoolfield model also requires the calculation of starting values for each of its parameters. This was done in Python(\cite{Python2019}). The processed data was handed to a Python script which calculated the starting values of E, Eh, Th and B0 from the data. 
+The Sharpe-Schoolfield model also requires the calculation of starting values for each of its parameters. This was done in Python(\cite{Python32019}). The processed data was handed to a Python script which calculated the starting values of E, Eh, Th and B0 from the data. 
 E was calculated to be the gradient of a linear regression of temperature as a function of log trait value, from the start of the data to the midpoint of the data. Temperature was the ($\frac{ 1}{K \times k}$) temperature calculated earlier for this purpose. The midpoint was the temperature at which log trait value was at its highest.
 Eh was calculated to be the gradient of a linear regression of temperature as a function of log trait value from the midpoint of the data to end of the data. Temperature was the ($\frac{ 1}{K \times k}$) temperature calculated earlier for this purpose. 
 Th was calculated to be either the mean of the log trait value minus the log trait value to the power of $B0$ over the gradient of $Eh$ to the power negative 1 all over $k$, 
@@ -154,8 +152,8 @@ Further work should address the above issues, and include a greater number of co
 
 To conclude, both phenomenological and mechanistic models have utility in predicting how a species will react to global climate change. For the broadest method of predicting how a species reacts the simple Cubic model is likely to provide the greatest number of fits with a reasonable degree of accuracy, but to understand the mechanisms behind the response a mechanistic model, such as the Sharpe-Schoolfield model is likely a much better candidate. 
 
-\section{References}
-\bibliography{bibliography.bib}{}
-\bibliographystyle{plain}
+
+\bibliography{ref}
+\bibliographystyle{agsm}
 
 \end{document}

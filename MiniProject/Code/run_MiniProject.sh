@@ -25,7 +25,21 @@ echo "Commencing Plotting..."
 Rscript Plotting.R
 echo "Plotting complete!"
 echo "Writing up"
-#CompileLaTex.sh TEX CODE HERE 
+echo ""
+pdflatex MiniProject >/dev/null
+bibtex MiniProject      >/dev/null
+pdflatex MiniProject >/dev/null
+pdflatex MiniProject >/dev/null
+mv MiniProject.pdf ../Results/
+#CompileLaTex.sh MiniProject.tex
 echo "Written"
 echo "Tidying up..."
+rm *~
+rm *.aux
+rm *.dvi
+rm *.log
+rm *.nav
+rm *.out
+rm *.snm
+rm *.toc
 echo "All done! Have a nice day"

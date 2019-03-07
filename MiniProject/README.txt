@@ -20,7 +20,8 @@ scipy -- Boltzmann constant taken from here
 statistics -- Used in gradient calculations (linregress)
 
 R:
-ggplot2 -- used for end plotting
+dplyr -- Used in data handling (pipes are useful)
+ggplot2 -- Used for end plotting
 
 Directories:
 Code:
@@ -33,8 +34,8 @@ run_MiniProject.sh -- ties the entire workflow together
 schoolfield.py -- fits the schoolfield model
 SF_start_params.py -- calculates the starting values for all parameters of schoolfield
 TidyData.R -- tidies up output from SF_Start_Params for Schoolfield fitting
-LATEX DOC -- report writting in latex awaiting compliation
-BIBTEX DOC -- references for latex document
+MiniProject.tex -- report writting in latex awaiting compliation
+ref.bib -- references for latex document
 
 Data:
 BioTraits.csv -- raw data file for the BioTraits data

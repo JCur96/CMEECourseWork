@@ -25,10 +25,10 @@ echo "Commencing Plotting..."
 Rscript Plotting.R
 echo "Plotting complete!"
 echo "Writing up"
-yes '' | pdflatex MiniProject.tex >/dev/null
-yes '' | bibtex MiniProject >/dev/null
-yes '' | pdflatex MiniProject.tex >/dev/null
-yes '' | pdflatex MiniProject.tex >/dev/null
+yes '' | pdflatex MiniProject.tex > NUL 2>&1
+yes '' | bibtex MiniProject > NUL 2>&1
+yes '' | pdflatex MiniProject.tex > NUL 2>&1
+yes '' | pdflatex MiniProject.tex > NUL 2>&1
 mv MiniProject.pdf ../Results/
 echo "Written"
 echo "Tidying up..."

@@ -42,4 +42,5 @@ rm *.snm
 rm *.toc
 rm *.bbl
 rm *.blg
+rm NUL
 echo "All done! Have a nice day"

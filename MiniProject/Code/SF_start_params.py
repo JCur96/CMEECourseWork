@@ -97,6 +97,9 @@ class Starting_Calcs(object):
         )  # index assignment as passing scalar values
 
     def Param_gen_and_write(self):
+        """ Runs through generating starting
+        parameters and writes to a new .csv 
+        """
         SF_start_params = self.source_df.groupby(
             "FinalID").apply(self.start_params)
         SF_start_params.reset_index(level=0, inplace=True)
